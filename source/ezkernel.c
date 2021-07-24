@@ -767,16 +767,17 @@ void Show_game_name(u32 total,u32 Select)
 	
 	char msg[256];
 	
-	u32 X_offset=10;
-	u32 Y_offset=70;
+	u32 X_offset = 10;
+	u32 Y_offset = 70;
 	u32 line_x = 70;
 	//u32 str_len;
 	u16 name_color;
 	
-	if(total < 10)
+	if (total < 10) {
 		need_show = total;
-	else
+	} else {
 		need_show = 10;
+	}
 
 	for (line = 0; line < need_show; line++) {
 		if(line == Select) {
@@ -789,7 +790,7 @@ void Show_game_name(u32 total,u32 Select)
 	}		
 }
 //---------------------------------------------------------------------------------
-u32  get_count(void)
+u32 get_count(void)
 {
 	u32 res;
 	u32 count=0;
@@ -845,9 +846,9 @@ u32 show_recently_play(void)
 			u16 keysrepeat = keysDownRepeat();	
 			u16 keysup = keysUp();
 			if (keysrepeat & KEY_DOWN) {
-				if(Select < (all_count-1)){
+				if (Select < (all_count - 1)) {
 					Select++;
-					re_show=1;
+					re_show = 1;
 				}		
 			}
 			else if(keysrepeat & KEY_UP){					
@@ -866,8 +867,7 @@ u32 show_recently_play(void)
 			}						
 		}
 	}
-	else{
-		
+	else {
 		DrawHZText12(gl_no_game_played,0,1,20, gl_color_text,1);		
 		while(1)
 		{
@@ -905,13 +905,11 @@ void Make_recently_play_file(TCHAR* path,TCHAR* gamefilename)
 		sprintf(buf,"%s/%s",path,gamefilename);	
 	}	
 
-	for(i=0;i<count;i++)
-	{
-		get = strcmp(buf,p_recently_play[i]) ;
-		if(get==0)
-		{
+	for (i = 0; i<count; i++) {
+		get = strcmp(buf, p_recently_play[i]);
+		if(get == 0) {
 			u32 j;
-			for(j=i;j>0;j--){
+			for (j=i; j > 0 ; j--){
 				memset(p_recently_play[j],0x00,512);
 				dmaCopy(&(p_recently_play[j-1]),&(p_recently_play[j]), 512);					
 			}
@@ -1645,7 +1643,6 @@ int main(void) {
 	}
 
 refind_file:
-	
 
 	if(page_num== SD_list)
 	{
