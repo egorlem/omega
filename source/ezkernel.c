@@ -88,7 +88,7 @@ u16 gl_cheat_on;
 
 //----------------------------------------
 u16 gl_color_selected 		= RGB(00,20,26);
-u16 gl_color_text 				= RGB(31,31,31);
+u16 gl_color_text 				= RGB(255,0,0);
 u16 gl_color_selectBG_sd 	= RGB(00,00,31);
 u16 gl_color_selectBG_nor = RGB(10,10,10);
 u16 gl_color_MENU_btn			= RGB(20,20,20);
@@ -121,13 +121,13 @@ void wait_btn()
 //---------------------------------------------------------------------------------
 void Show_help_window()
 {
-	if(gl_select_lang == 0xE1E1)//english
-	{
-		DrawPic((u16*)gImage_English_manual, 240-70, 160-70, 70, 70, 0, 0, 1);//
-	}
-	else{
-		DrawPic((u16*)gImage_Chinese_manual, 240-70, 160-70, 70, 70, 0, 0, 1);//
-	}
+	// if(gl_select_lang == 0xE1E1)//english
+	// {
+	// 	DrawPic((u16*)gImage_English_manual, 240-70, 160-70, 70, 70, 0, 0, 1);//
+	// }
+	// else{
+	// 	DrawPic((u16*)gImage_Chinese_manual, 240-70, 160-70, 70, 70, 0, 0, 1);//
+	// }
 	DrawHZText12("START  :",0,3,20, gl_color_selected,1);
 		DrawHZText12(gl_START_help,0,52,20, gl_color_text,1);
 		
@@ -1221,7 +1221,7 @@ void CheckLanguage(void)
 	{
 		LoadEnglish();
 	}
-	else//ÖÐÎÄ
+	else//ï¿½ï¿½ï¿½ï¿½
 	{
 		LoadChinese();
 	}
