@@ -688,7 +688,7 @@ void Show_MENU_btn()
 void Show_MENU(u32 menu_select,PAGE_NUM page,u32 havecht,u32 Save_num,u32 is_menu)
 {
 	int line;
-	u32 y_offset= 30;
+	u32 y_offset= 70;
 	u16 name_color;
 	char msg[30];
 	
@@ -2091,8 +2091,8 @@ re_showfile:
 		}
 		
 		re_show_menu:
-		DrawPic((u16*)gImage_MENU, 56, 25, 128, 110, 0, 0, 1);//show menu pic		
-		Show_MENU_btn();			
+		// DrawPic((u16*)gImage_MENU, 56, 25, 128, 110, 0, 0, 1);//show menu pic		
+		// Show_MENU_btn();			
 		while(1)//3
 		{
 			if(re_menu)
