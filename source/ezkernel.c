@@ -768,8 +768,8 @@ void Show_game_name(u32 total,u32 Select)
 	char msg[256];
 	
 	u32 X_offset=1;
-	u32 Y_offset=20;
-	u32 line_x = 14;
+	u32 Y_offset=70;
+	u32 line_x = 70;
 	//u32 str_len;
 	u16 name_color;
 	
