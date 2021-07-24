@@ -1596,8 +1596,8 @@ int main(void) {
 
 	SetMode (MODE_3 | BG2_ENABLE );
 	
-	SD_Disable();	
-	Set_RTC_status(1);
+	// SD_Disable();	
+	// Set_RTC_status(1);
 		
 	//check FW
 	u16 Built_in_ver = 8;   //Newest_FW_ver
@@ -2091,8 +2091,8 @@ re_showfile:
 		}
 		
 		re_show_menu:
-		// DrawPic((u16*)gImage_MENU, 56, 25, 128, 110, 0, 0, 1);//show menu pic		
-		// Show_MENU_btn();			
+		DrawPic((u16*)gImage_MENU, 56, 25, 128, 110, 0, 0, 1);//show menu pic		
+		Show_MENU_btn();			
 		while(1)//3
 		{
 			if(re_menu)
