@@ -87,15 +87,17 @@ u16 gl_sleep_on;
 u16 gl_cheat_on;
 
 //----------------------------------------
-u16 gl_color_selected 		= RGB(00,20,26);
-u16 gl_color_text 				= RGB(255,0,0);
+// 
+u16 gl_color_selected 		= RGB(00,95,95);
+// ВЕСЬ ТЕКСТ
+u16 gl_color_text 				= RGB(255,0,0); 
 u16 gl_color_selectBG_sd 	= RGB(00,00,31);
 u16 gl_color_selectBG_nor = RGB(10,10,10);
-u16 gl_color_MENU_btn			= RGB(20,20,20);
+u16 gl_color_MENU_btn			= RGB(135,00,00);
 u16 gl_color_cheat_count  = RGB(00,31,00);
 u16 gl_color_cheat_black  = RGB(00,00,00);
 u16 gl_color_NORFULL      = RGB(31,00,00);
-u16 gl_color_btn_clean    = RGB(00,00,31);
+u16 gl_color_btn_clean    = RGB(255,255,00);
 //******************************************************************************
 void delay(u32 R0)
 {
@@ -140,7 +142,7 @@ void Show_help_window()
 	DrawHZText12("L+START:",0,3,65, gl_color_selected,1);
 		DrawHZText12(gl_LSTART_help,0,52,65, gl_color_text,1);	
 		
-	DrawHZText12(gl_online_manual,0,240-70-7,77, gl_color_text,1);
+	// DrawHZText12(gl_online_manual,0,240-70-7,77, gl_color_text,1);
 	while(1)
 	{
 		VBlankIntrWait(); 	
@@ -231,7 +233,7 @@ void Show_ICON_filename(u32 show_offset,u32 file_select,u32 haveThumbnail)
 		else
 		{
 			char msg[20];
-			sprintf(msg,"%s","DIR");
+			sprintf(msg,"%s","DIR???");
 			DrawHZText12(msg,0,221,y_offset + line*14, name_color,1);
 		}
 	}
