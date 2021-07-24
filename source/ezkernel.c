@@ -721,7 +721,7 @@ void Show_MENU(u32 menu_select,PAGE_NUM page,u32 havecht,u32 Save_num,u32 is_men
 		}
 
 		if(page==NOR_list)
-			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line*14, name_color,1);
+			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line * 14, name_color,1);
 		else
 		{
 			if(line == 5)//cheat
@@ -767,26 +767,25 @@ void Show_game_name(u32 total,u32 Select)
 	
 	char msg[256];
 	
-	u32 X_offset=1;
+	u32 X_offset=10;
 	u32 Y_offset=70;
 	u32 line_x = 70;
 	//u32 str_len;
 	u16 name_color;
 	
-	if(total<10)
+	if(total < 10)
 		need_show = total;
 	else
 		need_show = 10;
-	for(line=0;line<need_show;line++)
-	{
-		if(line== Select)
+
+	for (line = 0; line < need_show; line++) {
+		if(line == Select) {
 			name_color = gl_color_selected;
-		else
+		} else {
 			name_color = gl_color_text;
-			
-		sprintf(msg,"%s",&(p_recently_play[line]) );				
-		DrawHZText12(msg,39,X_offset,Y_offset+line*line_x, name_color,1);					
-			
+			sprintf(msg, "%s" , & (p_recently_play[line]) );				
+			DrawHZText12(msg, 100, X_offset, Y_offset + line * line_x, name_color, 1);
+		}
 	}		
 }
 //---------------------------------------------------------------------------------
