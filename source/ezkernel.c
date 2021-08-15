@@ -759,7 +759,7 @@ u32 show_recently_play(void) {
 	all_count = get_count();	
 	
 	if (all_count) {				
-		setRepeat(15, 1);		
+		// setRepeat(15, 1);		
 		while(1) {
 			VBlankIntrWait();
 			VBlankIntrWait();	
@@ -1613,7 +1613,7 @@ re_showfile:
 	page_mode = 0;
   updata = 1;
   u32 key_L = 0;
-	setRepeat(15, 1);
+	// setRepeat(15, 1);
 	
 	if(page_num == SD_list) {
 		DrawPic((u16*)gImage_SD, 0, 0, 240, 160, 0, 0, 1);	
@@ -1733,7 +1733,7 @@ re_showfile:
 				}
 			}
 			
-			setRepeat(15, 1);	
+			// setRepeat(15, 1);	
 
 	    updata = 0;
 			scanKeys();
