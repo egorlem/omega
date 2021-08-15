@@ -396,6 +396,8 @@ u32 Setting_window(void)
 				sprintf(msg,"%s %s  %s",str0,str1,str2);
 				DrawHZText12(msg,0,x_offset+10,y_offset+line_x*6,gl_color_text,1);
 				
+				setRepeat(15, 1);	
+
 				re_show = 0;		
 				scanKeys();
 				keys = keysDown();

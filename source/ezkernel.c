@@ -759,7 +759,7 @@ u32 show_recently_play(void) {
 	all_count = get_count();	
 	
 	if (all_count) {				
-		setRepeat(15,1);		
+		setRepeat(15, 1);		
 		while(1) {
 			VBlankIntrWait();
 			VBlankIntrWait();	
@@ -1613,7 +1613,7 @@ re_showfile:
 	page_mode = 0;
   updata = 1;
   u32 key_L = 0;
-	setRepeat(5,1);
+	setRepeat(15, 1);
 	
 	if(page_num == SD_list) {
 		DrawPic((u16*)gImage_SD, 0, 0, 240, 160, 0, 0, 1);	
@@ -1732,7 +1732,9 @@ re_showfile:
 					renderFileListScreen(shift, show_offset, file_select, short_filename);
 				}
 			}
-				
+			
+			setRepeat(15, 1);	
+
 	    updata = 0;
 			scanKeys();
 			u16 keysdown = keysDown();
@@ -1752,11 +1754,11 @@ re_showfile:
 	        if (file_select > 8) {
 	          if (file_select == 9) {
 	            show_offset++;
-	            updata=1;
+	            updata = 1;
 	          }
 	        } else {
 	          file_select++;
-	          updata=2;
+	          updata = 2;
 	        }
 					shift = 0;
 				}
@@ -1819,8 +1821,7 @@ re_showfile:
 				folder_select=0;
 				shift = 0;
 				goto refind_file;
-			}   
-			else if (keysdown & KEY_B) {
+			} else if (keysdown & KEY_B) {
 			//return
 				if (page_num == SD_list) {
 	   			//res = f_getcwd(currentpath, sizeof currentpath / sizeof *currentpath);
