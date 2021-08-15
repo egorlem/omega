@@ -1126,8 +1126,7 @@ u32 Setting_window(void)
 									}
 							}	
 						}
-						else if(select == 2) 
-						{
+						else if(select == 2) {
 							save_set_info();
 							CheckLanguage(); //read again    	
 							ClearWithBG((u16*)gImage_SET,0, 20, 240, 160-20, 1);
