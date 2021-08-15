@@ -1771,8 +1771,7 @@ re_showfile:
 					}
 				}
 				shift = 0;
-			}
-			else if(keysrepeat & KEY_LEFT) {
+			} else if (keysrepeat & KEY_LEFT) {
 		    if (show_offset) {
 		      if (show_offset > 9)
 		        show_offset -= 10;
@@ -1780,8 +1779,7 @@ re_showfile:
 		        show_offset = 0;
 
 		      updata=1;
-		    }
-		    else {
+		    } else {
 		    	if (file_select) {
 		    		file_select=0;
 		    		updata=1;
@@ -1966,9 +1964,10 @@ re_showfile:
 			VBlankIntrWait();
 			
 	    re_menu = 0;
+			
 			scanKeys();
 			u16 keysdown = keysDown();
-			u16 keysup  = keysUp();
+			u16 keysup = keysUp();
 			u16 keys_released = keysUp();
 			u16 keysrepeat = keysDownRepeat();
 			// Логика renderBootDetail

@@ -72,6 +72,7 @@ void Draw_select_icon(u32 X,u32 Y,u32 mode)
 u32 Setting_window(void)
 {
 	u16 keys;
+	u16 keysrepeat;
 	u32 line;
 	u32 select;
 	u32 Set_OK=0;
@@ -398,6 +399,8 @@ u32 Setting_window(void)
 				re_show = 0;		
 				scanKeys();
 				keys = keysDown();
+				keysrepeat = keysDownRepeat();
+				
 				if (keys & KEY_A) {//set
 					Set_OK_line = select;
 					Set_OK = 1;//!Set_OK;
@@ -431,13 +434,13 @@ u32 Setting_window(void)
 					edit_rtshotkey[2] = (read10>10)?K_START:read10;
 
 				}
-				else if (keys  & KEY_DOWN){  
+				else if (keysrepeat & KEY_DOWN){  
 					if(select < 6){
 						select++;		
 						re_show=1;
 					}
 				}
-				else if(keys & KEY_UP){
+				else if(keysrepeat & KEY_UP){
 					if(select){
 						select--;
 						re_show=1;
