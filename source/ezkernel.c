@@ -1706,7 +1706,7 @@ re_showfile:
 				// ======================
 	  	} else if (updata > 1) {
 
-	    	if (page_num==NOR_list) {
+	    	if (page_num == NOR_list) {
 					Refresh_filename_NOR(show_offset,file_select,updata);
 					ClearWithBG(gImage_NOR,185, 0, 30, 18, 1);
 	    	} else {
@@ -1735,7 +1735,7 @@ re_showfile:
 				
 	    updata = 0;
 			scanKeys();
-			u16 keysdown  = keysDown();
+			u16 keysdown = keysDown();
 			u16 keys_released = keysUp();
 			u16 keysrepeat = keysDownRepeat();
 
@@ -1760,14 +1760,14 @@ re_showfile:
 	        }
 					shift = 0;
 				}
-			} else if(keysrepeat & KEY_UP) {
+			} else if (keysrepeat & KEY_UP) {
 				if (file_select) {
 					file_select--;
-					updata=3;
+					updata = 3;
 				} else {
 					if (show_offset) {
 						show_offset--;
-						updata=1;
+						updata = 1;
 					}
 				}
 				shift = 0;
@@ -1788,8 +1788,7 @@ re_showfile:
 		   	 	}
 		    }
 		    shift = 0;
-			}
-			else if (keysrepeat & KEY_RIGHT) {
+			} else if (keysrepeat & KEY_RIGHT) {
 	      if (show_offset + 10 < list_game_total) {
 	        if (show_offset + 20 <= list_game_total)
 	          show_offset += 10;
@@ -1854,8 +1853,8 @@ re_showfile:
 				gl_show_Thumbnail = !gl_show_Thumbnail;
 				save_set_info_SELECT();
 				updata=1;
-			}	else if(keysdown & KEY_A) {
-				if (page_num==SD_list) {
+			}	else if (keysdown & KEY_A) {
+				if (page_num == SD_list) {
 					//res = f_getcwd(currentpath, sizeof currentpath / sizeof *currentpath);		
 		      if (show_offset+file_select < folder_total) {	   				
 	   				if (strcmp(currentpath,"/") !=0) {	
@@ -1999,7 +1998,7 @@ re_showfile:
 				}
 				f_chdir(currentpath);//return to old folder
 				goto re_showfile;
-			} else if (keysdown & KEY_LEFT) {
+			} else if (keysrepeat & KEY_LEFT) {
 				if (MENU_line == 4) {
 					//save type
 					if (Save_num) {
@@ -2009,7 +2008,7 @@ re_showfile:
 						Show_MENU_btn();
 					}
 				}
-			} else if (keysdown & KEY_RIGHT) {
+			} else if (keysrepeat & KEY_RIGHT) {
 				if (MENU_line == 4) { 
 					//save type
 					if (Save_num < 5) {
