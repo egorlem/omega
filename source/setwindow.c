@@ -436,13 +436,13 @@ u32 Setting_window(void)
 					edit_rtshotkey[2] = (read10>10)?K_START:read10;
 
 				}
-				else if (keysrepeat & KEY_DOWN){  
+				else if (keys & KEY_DOWN){  
 					if(select < 6){
 						select++;		
 						re_show=1;
 					}
 				}
-				else if(keysrepeat & KEY_UP){
+				else if(keys & KEY_UP){
 					if(select){
 						select--;
 						re_show=1;
@@ -629,7 +629,7 @@ u32 Setting_window(void)
 					scanKeys();
 					keys = keysDown();
 					u16 keysrepeat = keysDownRepeat();
-					if(keysrepeat & KEY_UP) {
+					if(keys & KEY_UP) {
 						if(select ==0){
 							switch(edit_pos) {
 								case 2:
@@ -798,7 +798,7 @@ u32 Setting_window(void)
 						
 						
 						re_show = 1;								
-					} else if(keysrepeat & KEY_DOWN) {
+					} else if(keys & KEY_DOWN) {
 						if(select ==0){
 							switch(edit_pos) {
 								case 2:

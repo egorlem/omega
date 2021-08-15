@@ -774,12 +774,12 @@ u32 show_recently_play(void) {
 			u16 keysrepeat = keysDownRepeat();	
 			u16 keysup = keysUp();
 			
-			if (keysrepeat & KEY_DOWN) {
+			if ( keysup & KEY_DOWN) {
 				if (Select < (all_count-1)) {
 					Select++;
 					re_show=1;
 				}		
-			} else if(keysrepeat & KEY_UP) {					
+			} else if(keysup & KEY_UP) {					
 				if (Select) {
 					Select--;
 					re_show=1;
@@ -1749,7 +1749,7 @@ re_showfile:
 				list_game_total = game_folder_total;
 			}
 
-			if (keysrepeat & KEY_DOWN) {
+			if (keysdown  & KEY_DOWN) {
 				if (file_select + show_offset + 1 < (list_game_total)) {
 	        if (file_select > 8) {
 	          if (file_select == 9) {
@@ -1762,7 +1762,7 @@ re_showfile:
 	        }
 					shift = 0;
 				}
-			} else if (keysrepeat & KEY_UP) {
+			} else if (keysdown & KEY_UP) {
 				if (file_select) {
 					file_select--;
 					updata = 3;
@@ -1773,7 +1773,7 @@ re_showfile:
 					}
 				}
 				shift = 0;
-			} else if (keysrepeat & KEY_LEFT) {
+			} else if (keysdown & KEY_LEFT) {
 		    if (show_offset) {
 		      if (show_offset > 9)
 		        show_offset -= 10;
@@ -1788,7 +1788,7 @@ re_showfile:
 		   	 	}
 		    }
 		    shift = 0;
-			} else if (keysrepeat & KEY_RIGHT) {
+			} else if (keysdown & KEY_RIGHT) {
 	      if (show_offset + 10 < list_game_total) {
 	        if (show_offset + 20 <= list_game_total)
 	          show_offset += 10;
@@ -1973,7 +1973,7 @@ re_showfile:
 			u16 keysrepeat = keysDownRepeat();
 			// Логика renderBootDetail
 			// При нажатии клавиши вниз 
-			if (keysrepeat & KEY_DOWN) {
+			if (keysdown & KEY_DOWN) {
 				if (MENU_line < MENU_max) {
 	       	MENU_line++;
 	        re_menu = 1;
@@ -1982,7 +1982,7 @@ re_showfile:
 	        re_menu = 1;	
 				}
 				// При нажатии клавиши вверх
-			} else if(keysrepeat & KEY_UP) {
+			} else if(keysdown & KEY_UP) {
 				if (MENU_line) {
 					MENU_line--;
 					re_menu = 1;
@@ -1991,14 +1991,14 @@ re_showfile:
 					re_menu = 1;
 				}
 				// При нажатии клавиги B
-			} else if (keysup & KEY_B) {
+			} else if (keysdown & KEY_B) {
 				gl_cheat_count = 0;
 				if (play_re != 0xBB) {
 					strncpy(currentpath, currentpath_temp, 256);//
 				}
 				f_chdir(currentpath);//return to old folder
 				goto re_showfile;
-			} else if (keysrepeat & KEY_LEFT) {
+			} else if (keysdown & KEY_LEFT) {
 				if (MENU_line == 4) {
 					//save type
 					if (Save_num) {
@@ -2008,7 +2008,7 @@ re_showfile:
 						Show_MENU_btn();
 					}
 				}
-			} else if (keysrepeat & KEY_RIGHT) {
+			} else if (keysdown & KEY_RIGHT) {
 				if (MENU_line == 4) { 
 					//save type
 					if (Save_num < 5) {

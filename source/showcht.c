@@ -900,7 +900,7 @@ void Open_cht_file(TCHAR *gamefilename,u32 havecht)
 				u16 keysup = keysUp();
 				u16 keysrepeat = keysDownRepeat();	
 								
-				if (keysrepeat & KEY_DOWN) {
+				if (keysdown & KEY_DOWN) {
 					if (Select + showoffset+1 < (all_count )) {
 		        if ( Select > 8 ){
 		          if ( Select == 9 ) {
@@ -928,7 +928,7 @@ void Open_cht_file(TCHAR *gamefilename,u32 havecht)
 					}
 					
 				}
-				else if(keysrepeat & KEY_UP)
+				else if(keysdown & KEY_UP)
 				{
 					if (Select ) {
 						Select--;
@@ -966,7 +966,7 @@ void Open_cht_file(TCHAR *gamefilename,u32 havecht)
 						}
 					}
 				}
-				else if(keysrepeat & KEY_LEFT)
+				else if(keysdown & KEY_LEFT)
 				{
 			    if ( showoffset )
 			    {
@@ -987,7 +987,7 @@ void Open_cht_file(TCHAR *gamefilename,u32 havecht)
 			   	 	}
 			    }
 				}
-				else if(keysrepeat & KEY_RIGHT)
+				else if(keysdown & KEY_RIGHT)
 				{
 		      if ( showoffset + 10 < all_count )
 		      {
