@@ -880,7 +880,7 @@ void Open_cht_file(TCHAR *gamefilename,u32 havecht)
 		if(all_count)
 		{
 			all_count = Check_count(all_count);//cut from "GameInfo"
-			setRepeat(15,1);		
+			// setRepeat(15,1);		
 			while(1)//3
 			{
 				VBlankIntrWait();
@@ -896,9 +896,8 @@ void Open_cht_file(TCHAR *gamefilename,u32 havecht)
 					re_show = 0;
 				}								
 				scanKeys();
-				u16 keysdown  = keysDown();
+				u16 keysdown = keysDown();
 				u16 keysup = keysUp();
-				u16 keysrepeat = keysDownRepeat();	
 								
 				if (keysdown & KEY_DOWN) {
 					if (Select + showoffset+1 < (all_count )) {

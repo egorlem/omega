@@ -72,7 +72,6 @@ void Draw_select_icon(u32 X,u32 Y,u32 mode)
 u32 Setting_window(void)
 {
 	u16 keys;
-	u16 keysrepeat;
 	u32 line;
 	u32 select;
 	u32 Set_OK=0;
@@ -396,13 +395,12 @@ u32 Setting_window(void)
 				sprintf(msg,"%s %s  %s",str0,str1,str2);
 				DrawHZText12(msg,0,x_offset+10,y_offset+line_x*6,gl_color_text,1);
 				
-				setRepeat(15, 1);	
+				// setRepeat(15, 1);	
 
 				re_show = 0;		
 				scanKeys();
 				keys = keysDown();
-				keysrepeat = keysDownRepeat();
-				
+
 				if (keys & KEY_A) {//set
 					Set_OK_line = select;
 					Set_OK = 1;//!Set_OK;
@@ -628,7 +626,7 @@ u32 Setting_window(void)
 					re_show = 0;		
 					scanKeys();
 					keys = keysDown();
-					u16 keysrepeat = keysDownRepeat();
+
 					if(keys & KEY_UP) {
 						if(select ==0){
 							switch(edit_pos) {

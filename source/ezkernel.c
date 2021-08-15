@@ -770,8 +770,6 @@ u32 show_recently_play(void) {
 			}			
 
 			scanKeys();
-			
-			u16 keysrepeat = keysDownRepeat();	
 			u16 keysup = keysUp();
 			
 			if ( keysup & KEY_DOWN) {
@@ -1739,7 +1737,6 @@ re_showfile:
 			scanKeys();
 			u16 keysdown = keysDown();
 			u16 keys_released = keysUp();
-			u16 keysrepeat = keysDownRepeat();
 
 			u32 list_game_total;
 
@@ -1970,7 +1967,7 @@ re_showfile:
 			u16 keysdown = keysDown();
 			u16 keysup = keysUp();
 			u16 keys_released = keysUp();
-			u16 keysrepeat = keysDownRepeat();
+			
 			// Логика renderBootDetail
 			// При нажатии клавиши вниз 
 			if (keysdown & KEY_DOWN) {
