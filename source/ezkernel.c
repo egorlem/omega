@@ -543,8 +543,7 @@ void Show_game_num(u32 count,u32 list)
 	DrawHZText12(msg,0,185,3, gl_color_text,1);
 }
 //---------------------------------------------------------------------------------
-void renderFileListScreen(u32 shift, u32 show_offset, u32 file_select, u32 haveThumbnail)
-{
+void renderFileListScreen(u32 shift, u32 show_offset, u32 file_select, u32 haveThumbnail) {
 	u32 need_show_folder;
 	//u32 line;
 	u32 char_num;	
@@ -557,61 +556,55 @@ void renderFileListScreen(u32 shift, u32 show_offset, u32 file_select, u32 haveT
 	u8 msg[128];
 	u8 temp_filename[100];
 	
-	if(shift > timeout) {
-		if(show_offset >= folder_total)
-		{
+	if (shift > timeout) {
+		if (show_offset >= folder_total) {
 			need_show_folder = 0;
-		}
-		else
-		{
+		} else {
 			need_show_folder = folder_total-show_offset;
-			if(need_show_folder > 10)
+			if (need_show_folder > 10)
 				need_show_folder = 10;
-		}
-
-		if(haveThumbnail)
-		{
-			if(file_select>3){
-				char_num = 17;
 			}
-			else{
+
+		if (haveThumbnail) {
+			if (file_select > 3) {
+				char_num = 17;
+			} else {
 				char_num = 33;
 			}
-		}
-		else{
+
+		} else {
 			char_num = 33;
 		}
 
-		
 		u32 offset=0;
-		if(show_offset >= folder_total)
+		
+		if (show_offset >= folder_total)
 			offset = show_offset - folder_total;
 
-		if(file_select < need_show_folder) {
-			strncpy(temp_filename,pFolder[show_offset+file_select].filename , 100 );
-		
+		if (file_select < need_show_folder) {
+			strncpy(temp_filename,pFolder[show_offset+file_select].filename , 100 );	
 		} else {
 			strncpy(temp_filename,pFilename_buffer[offset+file_select-need_show_folder].filename , 100 );		
 		}
 		
 		namelen = strlen(temp_filename);
 		
-		if(namelen > (char_num-1) ) {
-			u32  tt = ((shift-timeout)/8)% (namelen);
-			if(orgtt!= tt ) {	
-				orgtt = tt ;
+		if (namelen > (char_num - 1)) {
+			u32  tt = ((shift - timeout) / 8) % (namelen);
+			if (orgtt != tt) {	
+				orgtt = tt;
 				sprintf(msg,"%s   ",temp_filename + tt);
-				strncpy(msg+strlen(msg) ,temp_filename , 128 - strlen(msg) );
-				if(temp_filename[tt] > 0x80) {						
-					if(dwName) {
+				strncpy(msg+strlen(msg) ,temp_filename , 128 - strlen(msg));
+				if (temp_filename[tt] > 0x80) {						
+					if (dwName) {
 						msg[0] = 0x20;
 						dwName = 0;
-					}
-					else
+					} else {
 						dwName = 1;
-				}
-				else
+					}
+				} else {
 					dwName = 0;
+				}
 					
 				Clear(17, 20 + file_select * 14, (char_num) * 6, 13, gl_color_selectBG_sd, 1);	
 				DrawHZText12(msg, char_num - 1, 1 + 16, y_offset + file_select * 14, gl_color_text, 1);
@@ -634,7 +627,7 @@ void Show_MENU_btn() {
  */
 void renderBootDetail(u32 menu_select, PAGE_NUM page, u32 havecht, u32 Save_num, u32 is_menu) {
 	int line;
-	u32 y_offset= 30;
+	u32 y_offset = 30;
 	u16 name_color;
 	char msg[30];
 	
@@ -662,11 +655,11 @@ void renderBootDetail(u32 menu_select, PAGE_NUM page, u32 havecht, u32 Save_num,
 		}
 		//====================
 
-		if(page == NOR_list)
+		if (page == NOR_list)
 			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line * 14, name_color, 1);
 		else {
 			//cheat
-			if(line == 5) {
+			if (line == 5) {
 				sprintf(msg,"%s(%d)",gl_rom_menu[line], gl_cheat_count);
 				DrawHZText12(msg, 32, 60, y_offset + line * 14, name_color, 1);
 			} else {
@@ -1733,19 +1726,22 @@ re_showfile:
 				}
 			}
 			if (continue_MENU) break;
+
 			if (page_num == SD_list) {
-				if (game_folder_total)
+				if (game_folder_total) {
 					renderFileListScreen(shift, show_offset, file_select, short_filename);
+				}
 			}
 				
-	    updata=0;
+	    updata = 0;
 			scanKeys();
 			u16 keysdown  = keysDown();
 			u16 keys_released = keysUp();
 			u16 keysrepeat = keysDownRepeat();
 
 			u32 list_game_total;
-			if(page_num==NOR_list) {
+
+			if(page_num == NOR_list) {
 				list_game_total = game_total_NOR;
 			} else {
 				list_game_total = game_folder_total;
@@ -1964,35 +1960,39 @@ re_showfile:
 		
 		while(1) {
 		//3
-			if(re_menu) {				
+			if (re_menu) {				
 				renderBootDetail(MENU_line,page_num, ((havecht>0)?1:0),Save_num,is_EMU);								
 			}
 
 			VBlankIntrWait();
 			
-	    re_menu=0;
+	    re_menu = 0;
 			scanKeys();
-			u16 keysdown  = keysDown();
+			u16 keysdown = keysDown();
 			u16 keysup  = keysUp();
 			u16 keys_released = keysUp();
-
-			if (keysdown & KEY_DOWN) {
+			u16 keysrepeat = keysDownRepeat();
+			// Логика renderBootDetail
+			// При нажатии клавиши вниз 
+			if (keysrepeat & KEY_DOWN) {
 				if (MENU_line < MENU_max) {
 	       	MENU_line++;
-	        re_menu=1;
-				} else if(MENU_line == MENU_max){
-	        MENU_line=0;
-	        re_menu=1;	
+	        re_menu = 1;
+				} else if (MENU_line == MENU_max) {
+	        MENU_line = 0;
+	        re_menu = 1;	
 				}
-			} else if(keysdown & KEY_UP) {
-				if (MENU_line ) {
+				// При нажатии клавиши вверх
+			} else if(keysrepeat & KEY_UP) {
+				if (MENU_line) {
 					MENU_line--;
-					re_menu=1;
+					re_menu = 1;
 				} else if(MENU_line == 0) {
-					MENU_line=MENU_max;
-					re_menu=1;
+					MENU_line = MENU_max;
+					re_menu = 1;
 				}
-			} else if(keysup & KEY_B) {
+				// При нажатии клавиги B
+			} else if (keysup & KEY_B) {
 				gl_cheat_count = 0;
 				if (play_re != 0xBB) {
 					strncpy(currentpath, currentpath_temp, 256);//
@@ -2009,7 +2009,7 @@ re_showfile:
 						Show_MENU_btn();
 					}
 				}
-			} else if(keysdown & KEY_RIGHT) {
+			} else if (keysdown & KEY_RIGHT) {
 				if (MENU_line == 4) { 
 					//save type
 					if (Save_num < 5) {
@@ -2062,6 +2062,7 @@ re_showfile:
 			}
 			ShowTime(page_num,page_mode);
 		}	//3
+		// end  renderBootDetail
 
 		Clear(0, 0, 240, 160, gl_color_cheat_black, 1);
 		DrawHZText12(gl_Loading,0,(240-strlen(gl_Loading)*6)/2,74, gl_color_text,1);
@@ -2113,7 +2114,7 @@ re_showfile:
 		}
 		
 		ShowbootProgress(gl_check_sav);				
-		memcpy(savfilename,pfilename,100);
+		memcpy(savfilename, pfilename, 100);
 		u32 strlen8 = strlen(savfilename) ;
 
 		if (is_EMU) {
