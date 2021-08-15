@@ -1,4 +1,4 @@
-#EZ-FLASH OMEGA Kernel
+# 021011 EZ-FLASH OMEGA Kernel
 
 ### How to build 
 
