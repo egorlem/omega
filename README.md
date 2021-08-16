@@ -1,6 +1,6 @@
 # 021011 EZ-FLASH OMEGA Kernel
 
- 021011 is version of EZ-FLASH OMEGA Kernel based on [original EZ-FLASH repo](https://github.com/ez-flash/omega-kernel) 
+ 021011 version of EZ-FLASH OMEGA Kernel based on [original EZ-FLASH repo](https://github.com/ez-flash/omega-kernel) 
 
 ### How to build 
 
