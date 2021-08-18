@@ -397,11 +397,14 @@ u32 Setting_window(void)
 				
 				// setRepeat(15, 1);	
 
-				re_show = 0;		
+				/* Keys behavior in settings screen */
 				scanKeys();
-				keys = keysDown();
+				setRepeat(15, 1);	
+				u16 isKeyDown = keysDown();
+				u16 isKeyDownRepeat = keysDownRepeat();
+				/* Keys actions */
 
-				if (keys & KEY_A) {//set
+				if (isKeyDown & KEY_A) {//set
 					Set_OK_line = select;
 					Set_OK = 1;//!Set_OK;
 					re_show=1;
@@ -434,22 +437,22 @@ u32 Setting_window(void)
 					edit_rtshotkey[2] = (read10>10)?K_START:read10;
 
 				}
-				else if (keys & KEY_DOWN){  
+				else if (isKeyDownRepea & KEY_DOWN){  
 					if(select < 6){
 						select++;		
 						re_show=1;
 					}
 				}
-				else if(keys & KEY_UP){
+				else if(isKeyDownRepeat & KEY_UP){
 					if(select){
 						select--;
 						re_show=1;
 					}
 				}  	
-				else if(keys & KEY_L) {
+				else if(isKeyDown & KEY_L) {
 					return 0;
 				}
-				else if(keys & KEY_R) {
+				else if(isKeyDown & KEY_R) {
 					return 1;
 				}			
 				
@@ -624,10 +627,14 @@ u32 Setting_window(void)
 						
 					}
 					re_show = 0;		
+					/* Keys behavior in set time area */
 					scanKeys();
-					keys = keysDown();
-
-					if(keys & KEY_UP) {
+					setRepeat(15, 1);	
+					u16 isKeyDown = keysDown();
+					u16 isKeyDownRepeat = keysDownRepeat();
+					
+					/* Keys actions */
+					if(isKeyDownRepeat & KEY_UP) {
 						if(select ==0){
 							switch(edit_pos) {
 								case 2:
@@ -796,7 +803,7 @@ u32 Setting_window(void)
 						
 						
 						re_show = 1;								
-					} else if(keys & KEY_DOWN) {
+					} else if(isKeyDownRepeat & KEY_DOWN) {
 						if(select ==0){
 							switch(edit_pos) {
 								case 2:
@@ -1020,7 +1027,7 @@ u32 Setting_window(void)
 							}
 						}
 						re_show = 1;	
-					} else if(keys & KEY_RIGHT) {
+					} else if(isKeyDown & KEY_RIGHT) {
 						if(select ==0){
 							if(edit_pos==7) {
 								edit_pos=0;
@@ -1062,7 +1069,7 @@ u32 Setting_window(void)
 								RTC_pos = 1;
 						}
 						re_show = 1;	
-					} else if(keys & KEY_LEFT) {
+					} else if(isKeyDown & KEY_LEFT) {
 						if(select ==0){
 							if(edit_pos==0) {
 								edit_pos=7;
@@ -1104,7 +1111,7 @@ u32 Setting_window(void)
 								RTC_pos = 0;
 						}
 						re_show = 1;	
-					} else if(keys & KEY_A) {
+					} else if(isKeyDown & KEY_A) {
 						if((0== select) && (edit_pos==7)){
 							rtc_enable();
 							rtc_set(edit_datetime);

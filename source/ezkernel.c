@@ -758,8 +758,7 @@ u32 show_recently_play(void) {
 	
 	all_count = get_count();	
 	
-	if (all_count) {				
-		// setRepeat(15, 1);		
+	if (all_count) {					
 		while(1) {
 			VBlankIntrWait();
 			VBlankIntrWait();	
@@ -768,24 +767,26 @@ u32 show_recently_play(void) {
 				Show_game_name(all_count,Select);
 				re_show = 0;
 			}			
-
+			/* Keys behavior in recently play screen */
 			scanKeys();
-			u16 keysup = keysUp();
-			
-			if ( keysup & KEY_DOWN) {
+			setRepeat(15, 1);	
+			u16 isKeyDown = keysDown();
+			u16 isKeyDownRepeat = keysDownRepeat();
+			/* Keys actions */
+			if (isKeyDownRepeat & KEY_DOWN) {
 				if (Select < (all_count-1)) {
 					Select++;
 					re_show=1;
 				}		
-			} else if(keysup & KEY_UP) {					
+			} else if(isKeyDownRepeat & KEY_UP) {					
 				if (Select) {
 					Select--;
 					re_show=1;
 				}
-			} else if(keysup & KEY_B){	
+			} else if(isKeyDown & KEY_B){	
 				return_val = 0xBB;				
 				break;
-			} else if(keysup & KEY_A){					
+			} else if(isKeyDown & KEY_A){					
 	 			return_val = Select;	 				
 	 			break;
 			}						
@@ -795,9 +796,10 @@ u32 show_recently_play(void) {
 		while(1) {
 			VBlankIntrWait();
 			VBlankIntrWait();	
+			/* Keys behavior in recently play screen */
 			scanKeys();
-			u16 keysup = keysUp();
-			if(keysup & KEY_B){	
+			u16 isKeyDown = keysDown();
+			if(isKeyDown & KEY_B){	
 				return_val = 0xBB;				
 				break;
 			}
@@ -1611,7 +1613,6 @@ re_showfile:
 	page_mode = 0;
   updata = 1;
   u32 key_L = 0;
-	// setRepeat(15, 1);
 	
 	if(page_num == SD_list) {
 		DrawPic((u16*)gImage_SD, 0, 0, 240, 160, 0, 0, 1);	
@@ -1731,13 +1732,7 @@ re_showfile:
 				}
 			}
 			
-			// setRepeat(15, 1);	
-
 	    updata = 0;
-			scanKeys();
-			u16 keysdown = keysDown();
-			u16 keys_released = keysUp();
-
 			u32 list_game_total;
 
 			if(page_num == NOR_list) {
@@ -1746,7 +1741,14 @@ re_showfile:
 				list_game_total = game_folder_total;
 			}
 
-			if (keysdown  & KEY_DOWN) {
+			/* Key behavior in file list screen. NOR and Main area */
+			setRepeat(15, 1);	
+			scanKeys();
+			u16 isKeyDown = keysDown();
+			u16 isKeyDownRepeat = keysDownRepeat();
+
+			/* Keys actions */
+			if (isKeyDownRepeat & KEY_DOWN) {
 				if (file_select + show_offset + 1 < (list_game_total)) {
 	        if (file_select > 8) {
 	          if (file_select == 9) {
@@ -1759,7 +1761,7 @@ re_showfile:
 	        }
 					shift = 0;
 				}
-			} else if (keysdown & KEY_UP) {
+			} else if (isKeyDownRepeat & KEY_UP) {
 				if (file_select) {
 					file_select--;
 					updata = 3;
@@ -1770,7 +1772,7 @@ re_showfile:
 					}
 				}
 				shift = 0;
-			} else if (keysdown & KEY_LEFT) {
+			} else if (isKeyDown & KEY_LEFT) {
 		    if (show_offset) {
 		      if (show_offset > 9)
 		        show_offset -= 10;
@@ -1785,7 +1787,7 @@ re_showfile:
 		   	 	}
 		    }
 		    shift = 0;
-			} else if (keysdown & KEY_RIGHT) {
+			} else if (isKeyDown & KEY_RIGHT) {
 	      if (show_offset + 10 < list_game_total) {
 	        if (show_offset + 20 <= list_game_total)
 	          show_offset += 10;
@@ -1796,7 +1798,7 @@ re_showfile:
 	      }
 	      shift = 0;
 			}
-			else if (keysdown & KEY_L) {
+			else if (isKeyDown & KEY_L) {
 				key_L = 1;
 				if (page_num) {
 	      	file_select = 0;
@@ -1808,9 +1810,9 @@ re_showfile:
 				page_num = SD_list;	
 				shift = 0;			
 			}
-			else if (keys_released & KEY_L) {
+			else if (isKeyDown & KEY_L) {
 				key_L = 0;
-			} else if (keysdown & KEY_R) {			
+			} else if (isKeyDown & KEY_R) {			
 	      if (page_num == HELP) continue;
 				page_num ++;
 				if (page_num == NOR_list) DrawPic((u16*)gImage_NOR, 0, 0, 240, 160, 0, 0, 1);
@@ -1818,7 +1820,7 @@ re_showfile:
 				folder_select=0;
 				shift = 0;
 				goto refind_file;
-			} else if (keysdown & KEY_B) {
+			} else if (isKeyDown & KEY_B) {
 			//return
 				if (page_num == SD_list) {
 	   			//res = f_getcwd(currentpath, sizeof currentpath / sizeof *currentpath);
@@ -1845,11 +1847,11 @@ re_showfile:
 			    }
 		  	}
 			}
-			else if (keysdown & KEY_SELECT) {
+			else if (isKeyDown & KEY_SELECT) {
 				gl_show_Thumbnail = !gl_show_Thumbnail;
 				save_set_info_SELECT();
 				updata=1;
-			}	else if (keysdown & KEY_A) {
+			}	else if (isKeyDown & KEY_A) {
 				if (page_num == SD_list) {
 					//res = f_getcwd(currentpath, sizeof currentpath / sizeof *currentpath);		
 		      if (show_offset+file_select < folder_total) {	   				
@@ -1882,7 +1884,7 @@ re_showfile:
 						break;
 					}
 				} 
-			} else if (keysdown & (KEY_START)) {
+			} else if (isKeyDown & KEY_START) {
 				if (page_num == SD_list) {//only work on sd list								
 					if (key_L) {
 						if (show_offset+file_select >= folder_total) {
@@ -1963,14 +1965,14 @@ re_showfile:
 			
 	    re_menu = 0;
 			
+			/* Keys behavior in boot detail screen */
 			scanKeys();
-			u16 keysdown = keysDown();
-			u16 keysup = keysUp();
-			u16 keys_released = keysUp();
-			
-			// Логика renderBootDetail
-			// При нажатии клавиши вниз 
-			if (keysdown & KEY_DOWN) {
+			setRepeat(15, 1);	
+			u16 isKeyDown = keysDown();
+			u16 isKeyDownRepeat = keysDownRepeat();
+
+			/* Keys actions */
+			if (isKeyDownRepeat & KEY_DOWN) {
 				if (MENU_line < MENU_max) {
 	       	MENU_line++;
 	        re_menu = 1;
@@ -1978,8 +1980,7 @@ re_showfile:
 	        MENU_line = 0;
 	        re_menu = 1;	
 				}
-				// При нажатии клавиши вверх
-			} else if(keysdown & KEY_UP) {
+			} else if(isKeyDownRepeat & KEY_UP) {
 				if (MENU_line) {
 					MENU_line--;
 					re_menu = 1;
@@ -1987,15 +1988,14 @@ re_showfile:
 					MENU_line = MENU_max;
 					re_menu = 1;
 				}
-				// При нажатии клавиги B
-			} else if (keysdown & KEY_B) {
+			} else if (isKeyDown & KEY_B) {
 				gl_cheat_count = 0;
 				if (play_re != 0xBB) {
 					strncpy(currentpath, currentpath_temp, 256);//
 				}
 				f_chdir(currentpath);//return to old folder
 				goto re_showfile;
-			} else if (keysdown & KEY_LEFT) {
+			} else if (isKeyDown & KEY_LEFT) {
 				if (MENU_line == 4) {
 					//save type
 					if (Save_num) {
@@ -2005,7 +2005,7 @@ re_showfile:
 						Show_MENU_btn();
 					}
 				}
-			} else if (keysdown & KEY_RIGHT) {
+			} else if (isKeyDown & KEY_RIGHT) {
 				if (MENU_line == 4) { 
 					//save type
 					if (Save_num < 5) {
@@ -2015,11 +2015,11 @@ re_showfile:
 						Show_MENU_btn();
 					}
 				}
-			}	else if (keysdown & KEY_L) {
+			}	else if (isKeyDown & KEY_L) {
 				key_L = 1;		
-			} else if(keys_released & KEY_L) {
+			} else if(isKeyDown & KEY_L) {
 				key_L = 0;
-			} else if(keysdown & KEY_A) {
+			} else if(isKeyDown & KEY_A) {
 				if (page_num == NOR_list) {
 	      	if (MENU_line == 0) {
 						// boot to NOR.page
