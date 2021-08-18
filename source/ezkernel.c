@@ -1547,12 +1547,12 @@ int main(void) {
 	}
 
 refind_file:
-
 	if (page_num == SD_list) {
 		folder_total = 0;
 		game_total_SD = 0; 
 
 		res = f_opendir(&dir,currentpath);
+		
 		if (res == FR_OK) {
 			while(1) {
 				res = f_readdir(&dir, &fileinfo);                   //read next
@@ -1852,16 +1852,19 @@ re_showfile:
 				save_set_info_SELECT();
 				updata=1;
 			}	else if (isKeyDown & KEY_A) {
+				/* On KEY A pressed down start */
 				if (page_num == SD_list) {
 					//res = f_getcwd(currentpath, sizeof currentpath / sizeof *currentpath);		
-		      if (show_offset+file_select < folder_total) {	   				
-	   				if (strcmp(currentpath,"/") !=0) {	
+		      if (show_offset + file_select < folder_total) {	   				
+	   				
+						 if (strcmp(currentpath,"/") !=0) {	
 	   					sprintf(currentpath,"%s%s",currentpath,"/");
 						}
 		      	
 						sprintf(currentpath,"%s%s",currentpath,pFolder[show_offset+file_select].filename);
 		      	
-						res=f_chdir(currentpath);
+						res = f_chdir(currentpath);
+
 						if (res != FR_OK) {
 							error_num = 0;
 							Show_error_num(error_num);
@@ -1877,17 +1880,17 @@ re_showfile:
 						//SD_list file
 						break;
 					}
-				}
-				else {   
+				} else {   
 					//NOR gba file
 					if (game_total_NOR) {
 						break;
 					}
 				} 
+				/* On KEY A pressed down end */
 			} else if (isKeyDown & KEY_START) {
 				if (page_num == SD_list) {//only work on sd list								
 					if (key_L) {
-						if (show_offset+file_select >= folder_total) {
+						if (show_offset + file_select >= folder_total) {
 							SD_list_L_START(show_offset,file_select,folder_total);
 							goto refind_file;	
 						}				
@@ -1903,7 +1906,7 @@ re_showfile:
 					}
 				}
 			}	
-			ShowTime(page_num,page_mode);
+			ShowTime(page_num, page_mode);
 		}	// 2
 
 		continue_MENU = 0;
@@ -1952,13 +1955,24 @@ re_showfile:
 		}
 		
 		re_show_menu:
-		DrawPic((u16*)gImage_MENU, 56, 25, 128, 110, 0, 0, 1);//show menu pic		
+		// TODO
+
+			int i;
+			unsigned short color = 0x0f1f;
+			unsigned short myImg[38400];
+
+			for (i = 0; i < 38400; i++) {
+				myImg[i] = gImage_MENU[i] >> 11;
+			}
+
+
+		DrawPic((u16*)gImage_MENU, 56, 25, 128, 110, 0, 0, 1); //show menu pic		
 		Show_MENU_btn();			
-		
+
 		while(1) {
-		//3
+			//3
 			if (re_menu) {				
-				renderBootDetail(MENU_line,page_num, ((havecht>0)?1:0),Save_num,is_EMU);								
+				renderBootDetail(MENU_line, page_num, ((havecht > 0) ? 1 : 0), Save_num, is_EMU);								
 			}
 
 			VBlankIntrWait();
