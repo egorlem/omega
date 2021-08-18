@@ -71,7 +71,8 @@ void Draw_select_icon(u32 X,u32 Y,u32 mode)
 //---------------------------------------------------------------------------------
 u32 Setting_window(void)
 {
-	u16 keys;
+	u16 isKeyDown;
+	u16 isKeyDownRepeat;
 	u32 line;
 	u32 select;
 	u32 Set_OK=0;
@@ -400,8 +401,8 @@ u32 Setting_window(void)
 				/* Keys behavior in settings screen */
 				scanKeys();
 				setRepeat(15, 1);	
-				u16 isKeyDown = keysDown();
-				u16 isKeyDownRepeat = keysDownRepeat();
+				isKeyDown = keysDown();
+				isKeyDownRepeat = keysDownRepeat();
 				/* Keys actions */
 
 				if (isKeyDown & KEY_A) {//set
@@ -437,7 +438,7 @@ u32 Setting_window(void)
 					edit_rtshotkey[2] = (read10>10)?K_START:read10;
 
 				}
-				else if (isKeyDownRepea & KEY_DOWN){  
+				else if (isKeyDownRepeat & KEY_DOWN){  
 					if(select < 6){
 						select++;		
 						re_show=1;
