@@ -226,11 +226,9 @@ u32 Setting_window(void) {
 	
 	
 			u32 offsety;
-			for(line=0;line<7;line++)
-			{
-				if(Set_OK==1)
-				{
-					if((line== select) && (0== select)&& (edit_pos==7))
+			for(line=0;line < 7;line++) {
+				if(Set_OK==1) {
+					if((line== select) && (0== select)&& (edit_pos == 7))
 						clean_color = gl_color_btn_clean;					
 					else if((line== select) && (1== select) && (addon_sel==2)) 
 						clean_color = gl_color_btn_clean;	
@@ -436,13 +434,13 @@ u32 Setting_window(void) {
 					edit_rtshotkey[2] = (read10>10)?K_START:read10;
 
 				}
-				else if (isKeyDownRepeat & KEY_DOWN){  
+				else if (isKeyDown & KEY_DOWN){  
 					if(select < 6){
 						select++;		
 						re_show=1;
 					}
 				}
-				else if(isKeyDownRepeat & KEY_UP){
+				else if(isKeyDown & KEY_UP){
 					if(select){
 						select--;
 						re_show=1;
@@ -868,7 +866,7 @@ u32 Setting_window(void) {
 							}
 						}
 						else if(select == 1){
-							if(addon_sel<2){
+							if(addon_sel < 2){
 								addon_sel += 3;
 							}
 						}
@@ -1034,16 +1032,16 @@ u32 Setting_window(void) {
 								edit_pos++;
 							}
 						}
-						else if(select ==1) 
+						else if(select == 1) 
 						{
 							if(addon_sel==3){
 								addon_sel ++;
 							}
-							else if(addon_sel<2){
+							else if(addon_sel < 2){
 								addon_sel ++;
 							}
 						}
-						else if(select ==2) //lang
+						else if(select == 2) //lang
 						{
 							language_sel = 1;								
 						}
@@ -1069,14 +1067,14 @@ u32 Setting_window(void) {
 						}
 						re_show = 1;	
 					} else if(isKeyDownRepeat & KEY_LEFT) {
-						if(select ==0){
-							if(edit_pos==0) {
-								edit_pos=7;
+						if(select == 0){
+							if(edit_pos == 0) {
+								edit_pos = 7;
 							} else {
 								edit_pos--;
 							}
-						}
-						else if(select ==1) 
+						} 
+						else if(select == 1) 
 						{
 							if(addon_sel==4){
 								addon_sel --;
@@ -1085,15 +1083,14 @@ u32 Setting_window(void) {
 								addon_sel --;
 							}		
 						}
-						else if(select ==2) //lang
-						{
+						//lang
+						else if(select == 2) {
 								language_sel = 0;
 						}						
-						else if(select ==3)
-						{
+						else if(select == 3) {
 								engine_pos = 0;
 						}
-						else if(select ==4)	
+						else if(select == 4)	
 						{
 							if(sleep_pos){
 								sleep_pos--;
