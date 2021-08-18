@@ -398,7 +398,7 @@ u32 Setting_window(void) {
 
 				/* Keys behavior in settings screen */
 				scanKeys();
-				setRepeat(15, 1);	
+				setRepeat(10, 1);	
 				isKeyDown = keysDown();
 				isKeyDownRepeat = keysDownRepeat();
 				/* Keys actions */
@@ -627,8 +627,8 @@ u32 Setting_window(void) {
 					}
 					re_show = 0;		
 					/* Keys behavior in set time area */
+					setRepeat(10, 1);	
 					scanKeys();
-					setRepeat(15, 1);	
 					isKeyDown = keysDown();
 					isKeyDownRepeat = keysDownRepeat();
 					

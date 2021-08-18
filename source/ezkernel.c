@@ -768,8 +768,8 @@ u32 show_recently_play(void) {
 				re_show = 0;
 			}			
 			/* Keys behavior in recently play screen */
-			scanKeys();
 			setRepeat(15, 1);	
+			scanKeys();
 			u16 isKeyDown = keysDown();
 			u16 isKeyDownRepeat = keysDownRepeat();
 			/* Keys actions */
@@ -1966,8 +1966,8 @@ re_showfile:
 	    re_menu = 0;
 			
 			/* Keys behavior in boot detail screen */
-			scanKeys();
 			setRepeat(15, 1);	
+			scanKeys();
 			u16 isKeyDown = keysDown();
 			u16 isKeyDownRepeat = keysDownRepeat();
 
