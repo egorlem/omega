@@ -395,7 +395,6 @@ u32 Setting_window(void) {
 				sprintf(msg,"%s %s  %s",str0,str1,str2);
 				DrawHZText12(msg,0,x_offset+10,y_offset+line_x*6,gl_color_text,1);
 				
-				// setRepeat(15, 1);	
 
 				/* Keys behavior in settings screen */
 				scanKeys();
@@ -630,8 +629,8 @@ u32 Setting_window(void) {
 					/* Keys behavior in set time area */
 					scanKeys();
 					setRepeat(15, 1);	
-					u16 isKeyDown = keysDown();
-					u16 isKeyDownRepeat = keysDownRepeat();
+					isKeyDown = keysDown();
+					isKeyDownRepeat = keysDownRepeat();
 					
 					/* Keys actions */
 					if(isKeyDownRepeat & KEY_UP) {
@@ -804,7 +803,7 @@ u32 Setting_window(void) {
 						
 						re_show = 1;								
 					} else if(isKeyDownRepeat & KEY_DOWN) {
-						if(select ==0){
+						if(select == 0){
 							switch(edit_pos) {
 								case 2:
 									switch(edit_datetime[_MONTH]) {
@@ -1027,7 +1026,7 @@ u32 Setting_window(void) {
 							}
 						}
 						re_show = 1;	
-					} else if(isKeyDown & KEY_RIGHT) {
+					} else if(isKeyDownRepeat & KEY_RIGHT) {
 						if(select ==0){
 							if(edit_pos==7) {
 								edit_pos=0;
@@ -1069,7 +1068,7 @@ u32 Setting_window(void) {
 								RTC_pos = 1;
 						}
 						re_show = 1;	
-					} else if(isKeyDown & KEY_LEFT) {
+					} else if(isKeyDownRepeat & KEY_LEFT) {
 						if(select ==0){
 							if(edit_pos==0) {
 								edit_pos=7;
