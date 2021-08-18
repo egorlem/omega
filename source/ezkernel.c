@@ -1956,17 +1956,16 @@ re_showfile:
 		
 		re_show_menu:
 		// TODO
-
+			volatile unsigned short* front_buffer = (volatile unsigned short*) 0x6000000;
 			int i;
-			unsigned short color = 0x0f1f;
 			unsigned short myImg[38400];
 
 			for (i = 0; i < 38400; i++) {
-				myImg[i] = gImage_MENU[i] >> 11;
+				myImg[i] = front_buffer[i] >> 11;
 			}
 
 
-		DrawPic((u16*)gImage_MENU, 56, 25, 128, 110, 0, 0, 1); //show menu pic		
+		DrawPic((u16*)myImg, 56, 25, 128, 110, 0, 0, 1); //show menu pic		
 		Show_MENU_btn();			
 
 		while(1) {

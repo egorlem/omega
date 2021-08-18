@@ -148,8 +148,7 @@ u32 Setting_window(void) {
 	{
 		VBlankIntrWait(); 	
 		
-		if(re_show)
-		{	
+		if(re_show) {	
 			//
 			sprintf(msg,"%s",gl_time);
 			DrawHZText12(msg,0,set_offset,y_offset,gl_color_selected,1);	
@@ -396,9 +395,7 @@ u32 Setting_window(void) {
 
 				/* Keys behavior in settings screen */
 				scanKeys();
-				setRepeat(10, 1);	
 				isKeyDown = keysDown();
-				isKeyDownRepeat = keysDownRepeat();
 				/* Keys actions */
 
 				if (isKeyDown & KEY_A) {//set
@@ -624,7 +621,7 @@ u32 Setting_window(void) {
 						
 					}
 					re_show = 0;		
-					/* Keys behavior in set time area */
+					/* Keys behavior in settings item area */
 					setRepeat(10, 1);	
 					scanKeys();
 					isKeyDown = keysDown();
