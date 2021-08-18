@@ -69,8 +69,7 @@ void Draw_select_icon(u32 X,u32 Y,u32 mode)
 		Clear(X+4, Y+4, 4, 4, gl_color_selected, 1);
 }
 //---------------------------------------------------------------------------------
-u32 Setting_window(void)
-{
+u32 Setting_window(void) {
 	u16 isKeyDown;
 	u16 isKeyDownRepeat;
 	u32 line;

@@ -1973,21 +1973,19 @@ re_showfile:
 
 			/* Keys actions */
 			if (isKeyDownRepeat & KEY_DOWN) {
+				
 				if (MENU_line < MENU_max) {
 	       	MENU_line++;
 	        re_menu = 1;
-				} else if (MENU_line == MENU_max) {
-	        MENU_line = 0;
-	        re_menu = 1;	
 				}
+				 
 			} else if(isKeyDownRepeat & KEY_UP) {
+				
 				if (MENU_line) {
 					MENU_line--;
 					re_menu = 1;
-				} else if(MENU_line == 0) {
-					MENU_line = MENU_max;
-					re_menu = 1;
-				}
+				} 
+
 			} else if (isKeyDown & KEY_B) {
 				gl_cheat_count = 0;
 				if (play_re != 0xBB) {
