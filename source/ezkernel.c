@@ -1129,7 +1129,7 @@ u32 IWRAM_CODE Loadfile2PSRAM(TCHAR *filename)
 //---------------------------------------------------------------------------------
 void CheckLanguage(void) {
 	//read setting
-	gl_select_lang =  Read_SET_info(0);
+	gl_select_lang = Read_SET_info(0);
 	
 	if ( (gl_select_lang != 0xE1E1) && (gl_select_lang != 0xE2E2)) {
 		gl_select_lang = 0xE1E1;
