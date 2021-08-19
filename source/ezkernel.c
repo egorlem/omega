@@ -108,7 +108,7 @@ u16 gl_color_text 				= 0x6F7B;
 // RGB(00, 95, 00);
 // u16 deepGreen = 0x2D60;
 u16 deepGreen = 0x2D60;
-u16 gl_color_MENU_btn			= RGB(22,31,10);
+u16 gl_color_MENU_btn			= 0x00C6;;
 u16 gl_color_cheat_count  = RGB(00,31,00);
 u16 gl_color_cheat_black  = RGB(00,00,00);
 u16 gl_color_NORFULL      = RGB(31,00,00);
@@ -615,7 +615,7 @@ void Show_MENU_btn() {
 	Clear(60,118-1,55,14,gl_color_MENU_btn,1);
 	Clear(125,118-1,55,14,gl_color_MENU_btn,1);
 	sprintf(msg,"%s",gl_menu_btn);
-	DrawHZText12(msg,0,60,118, gl_color_text,1);
+	DrawHZText12(msg,0,60,118, gl_color_text, 1);
 }
 //---------------------------------------------------------------------------------
 
@@ -653,7 +653,7 @@ void renderBootDetail(u32 menu_select, PAGE_NUM page, u32 havecht, u32 Save_num,
 		//====================
 
 		if (page == NOR_list)
-			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line * 14, name_color, 1);
+			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line * 20, name_color, 1);
 		else {
 			//cheat
 			if (line == 5) {
@@ -668,17 +668,17 @@ void renderBootDetail(u32 menu_select, PAGE_NUM page, u32 havecht, u32 Save_num,
 					switch(Save_num) {
 						case 1:sprintf(msg,"%s","<  SRAM  >");//0x11
 							break;
-						case 2:sprintf(msg,"%s","<EEPROM8K>");//0x22
+						case 2:sprintf(msg,"%s","<EEPROM8K >");//0x22
 							break;
 						case 3:sprintf(msg,"%s","<EEPROM512>");//0x23
 							break;				
-						case 4:sprintf(msg,"%s","<FLASH64 >");//0x32
+						case 4:sprintf(msg,"%s","< FLASH64 >");//0x32
 							break;
-						case 5:sprintf(msg,"%s","<FLASH128>");//0x31
+						case 5:sprintf(msg,"%s","< FLASH128>");//0x31
 							break;	
 						case 0:	
 						default:	
-							sprintf(msg,"%s",     "<  AUTO  >");	
+							sprintf(msg,"%s", "<   AUTO  >");	
 							break;			
 						}
 					// ClearWithBG((u16*)gImage_MENU -64,60+60, y_offset + line*14, 10*6, 13, 1);
@@ -689,8 +689,7 @@ void renderBootDetail(u32 menu_select, PAGE_NUM page, u32 havecht, u32 Save_num,
 	}
 }
 //------------------------------------------------------------------
-void Show_game_name(u32 total,u32 Select)
-{
+void Show_game_name(u32 total,u32 Select) {
 	u32 need_show;	
 	u32 line;
 	
@@ -1471,7 +1470,6 @@ void Show_error_num(u8 error_num) {
 // Program entry point
 //---------------------------------------------------------------------------------
 int main(void) {
-
 	irqInit();
 	irqEnable(IRQ_VBLANK);
 
@@ -1513,8 +1511,8 @@ int main(void) {
 	res = f_mount(&EZcardFs, "", 1);
 	
 	if (res != FR_OK) {
-		DrawHZText12(gl_init_error,0,2,20, gl_color_text,1);
-		DrawHZText12(gl_power_off,0,2,33, gl_color_text,1);
+		DrawHZText12(gl_init_error, 0, 2, 20, gl_color_text, 1);
+		DrawHZText12(gl_power_off, 0, 2, 33, gl_color_text, 1);
 		while(1);
 	} else {
 		DrawHZText12(gl_init_ok,0,2,20, gl_color_text,1);
