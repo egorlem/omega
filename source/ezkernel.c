@@ -31,12 +31,9 @@
 #include "images/MENU.h"
 #include "images/icons.h"
 #include "images/nor_icon.h"
-#include "images/icon_FC.h"
+
 #include "images/icon_GB.h"
 #include "images/NOTFOUND.h"
-
-#include "images/Chinese_manual.h"
-#include "images/English_manual.h"
 
 #include "goomba.h"
 #include "pocketnes.h"
@@ -109,8 +106,8 @@ u16 gl_cheat_on;
 u16 gl_color_selected 		= 0x5750;
 u16 gl_color_text 				= 0x6F7B;
 // RGB(00, 95, 00);
-u16 gl_color_selectBG_sd 	= 0x2D60;
-u16 gl_color_selectBG_nor = RGB(10,10,10);
+// u16 deepGreen = 0x2D60;
+u16 deepGreen = 0x2D60;
 u16 gl_color_MENU_btn			= RGB(22,31,10);
 u16 gl_color_cheat_count  = RGB(00,31,00);
 u16 gl_color_cheat_black  = RGB(00,00,00);
@@ -220,7 +217,7 @@ void Show_ICON_filename(u32 show_offset,u32 file_select,u32 haveThumbnail) {
 		}
 		
 		if(line == file_select) {			
-			Clear(17,20 + file_select*14,(char_num == 17)?(17*6+1):(240-17),13,gl_color_selectBG_sd,1);
+			Clear(17,20 + file_select*14,(char_num == 17)?(17*6+1):(240-17),13,deepGreen,1);
 		}
 
 		DrawPic((u16*)(gImage_icons+0*16*14*2), 0, y_offset + line*14, 16, 14, 1, gl_color_text, 1);
@@ -255,7 +252,7 @@ void Show_ICON_filename(u32 show_offset,u32 file_select,u32 haveThumbnail) {
 		}
 		
 		if(line == file_select) {
-			Clear(17,20 + file_select*14,(char_num == 17)?(17*6+1):(240-17),13,gl_color_selectBG_sd,1);
+			Clear(17,20 + file_select*14,(char_num == 17)?(17*6+1):(240-17),13,deepGreen,1);
 		}
 
 		u32 showy = y_offset + (line) * 14;
@@ -264,13 +261,13 @@ void Show_ICON_filename(u32 show_offset,u32 file_select,u32 haveThumbnail) {
 		u16* icon; 
 
 		if (!strcasecmp(&(pfilename[strlen8-3]), "gba")) {
-			icon = (u16*)(gImage_icons+1*16*14*2);
+			icon = (u16*)(gImage_icons + 1 * 16 * 14 * 2);
 		}	else if(!strcasecmp(&(pfilename[strlen8-3]), "gbc")) {
 			icon = (u16*)(gImage_icon_GB);
 		} else if(!strcasecmp(&(pfilename[strlen8-2]), "gb")) {
 			icon = (u16*)(gImage_icon_GB);
 		} else if(!strcasecmp(&(pfilename[strlen8-3]), "nes")) {
-			icon = (u16*)(gImage_icon_FC);
+			icon = (u16*)(gImage_icon_GB);
 		} else  {
 			icon = (u16*)(gImage_icons+2*16*14*2);
 		}	
@@ -396,14 +393,14 @@ void IWRAM_CODE Refresh_filename(u32 show_offset,u32 file_select,u32 updown,u32 
 		showy1 = y_offset +(file_select-1)*14;
 		showy2 = y_offset +(file_select)*14;
 		ClearWithBG((u16*)gImage_SD,17, 20 + xx1*14, clean_len1, 13, 1);
-		Clear(17,20 + xx2*14,clean_len2,13,gl_color_selectBG_sd,1);
+		Clear(17,20 + xx2*14,clean_len2,13,deepGreen,1);
 	} else {
 		// if(updown ==3)//up
 		xx1 = file_select;
 		xx2 = file_select+1;
 		showy1 = y_offset +(file_select)*14;
 		showy2 = y_offset +(file_select+1)*14;	
-		Clear(17,20 + xx1*14,clean_len1,13,gl_color_selectBG_sd,1);	
+		Clear(17,20 + xx1*14,clean_len1,13,deepGreen,1);	
 		ClearWithBG((u16*)gImage_SD,17, 20 + xx2*14,clean_len2, 13, 1);	
 	}
 
@@ -474,7 +471,7 @@ void Show_ICON_filename_NOR(u32 show_offset,u32 file_select)
 
 	for (line = 0; line < need_show; line++) {
 		if (line == file_select) {
-			Clear(17,20 + file_select*14,240-17,13,gl_color_selectBG_nor,1);
+			Clear(17,20 + file_select * 14, 240 - 17, 13, deepGreen, 1);
 		}		
 
 		DrawPic((u16*)gImage_nor_icon, 0, y_offset + line * 14, 16, 14, 1, gl_color_text, 1);
@@ -507,14 +504,14 @@ void Refresh_filename_NOR(u32 show_offset,u32 file_select,u32 updown) {
 		showy1 = y_offset +(file_select-1)*14;
 		showy2 = y_offset +(file_select)*14;
 		ClearWithBG((u16*)gImage_NOR,17, 20 + xx1*14, clean_len, 13, 1);
-		Clear(17,20 + xx2*14,clean_len,13,gl_color_selectBG_nor,1);
+		Clear(17,20 + xx2*14,clean_len,13,deepGreen,1);
 	} else {
 	//if(updown ==3)//up
 		xx1 = file_select;
 		xx2 = file_select+1;
 		showy1 = y_offset +(file_select)*14;
 		showy2 = y_offset +(file_select+1)*14;
-		Clear(17,20 + xx1*14,clean_len,13,gl_color_selectBG_nor,1);
+		Clear(17,20 + xx1*14,clean_len,13,deepGreen,1);
 		ClearWithBG((u16*)gImage_NOR,17, 20 + xx2*14,clean_len, 13, 1);
 	}
 
@@ -606,7 +603,7 @@ void renderFileListScreen(u32 shift, u32 show_offset, u32 file_select, u32 haveT
 					dwName = 0;
 				}
 					
-				Clear(17, 20 + file_select * 14, (char_num) * 6, 13, gl_color_selectBG_sd, 1);	
+				Clear(17, 20 + file_select * 14, (char_num) * 6, 13, deepGreen, 1);	
 				DrawHZText12(msg, char_num - 1, 1 + 16, y_offset + file_select * 14, gl_color_text, 1);
 			}	
 		}
