@@ -240,15 +240,15 @@ const char en_error_5[]="Make save error";
 const char en_error_6[]="RTS file error";
 
 const char *en_rom_menu[] = {
-	"Launch game",
-	"Launch game with addons",
+	"START GAME",
+	"START WITH ADDONS",
 	"Copy to NOR",
 	"Copy to NOR Addon",
 	"Saveing type",
 	"Cheat",
 };
 const char *en_nor_op[3]={
-	"Launch game",
+	"START GAME",
 	"Delete file",
 	"Format",
 };	

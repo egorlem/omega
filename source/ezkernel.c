@@ -653,7 +653,7 @@ void renderBootDetail(u32 menu_select, PAGE_NUM page, u32 havecht, u32 Save_num,
 		//====================
 
 		if (page == NOR_list)
-			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line * 20, name_color, 1);
+			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line * 14, name_color, 1);
 		else {
 			//cheat
 			if (line == 5) {
