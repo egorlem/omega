@@ -242,15 +242,15 @@ const char en_error_6[]="RTS file error";
 const char *en_rom_menu[] = {
 	"START GAME",
 	"START WITH ADDONS",
-	"Copy to NOR",
+	"COPY TO NOR",
 	"Copy to NOR Addon",
-	"Saveing type",
-	"Cheat",
+	"SAVEING",
+	"CHEAT",
 };
 const char *en_nor_op[3]={
 	"START GAME",
-	"Delete file",
-	"Format",
+	"DELETE FILE",
+	"FORMAT",
 };	
 
 //---------------------------------------------------------------------------------
