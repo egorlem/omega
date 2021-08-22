@@ -214,18 +214,18 @@ u32 Setting_window(void) {
 			}
 
 			//RTC
-			sprintf(msg,"%s",gl_ingameRTC);
-			DrawHZText12(msg,0,set_offset,y_offset+line_x*6,gl_color_selected,1);			
-				Draw_select_icon(x_offset,y_offset+line_x*6,(gl_ingame_RTC_open_status == 0x1));
-				//sprintf(msg,"%s",gl_offRTC_powersave);
-				ClearWithBG((u16*)gImage_SET,x_offset+15, y_offset+line_x*6, 6*6, 13, 1);
-				if(gl_ingame_RTC_open_status){
-					sprintf(msg,"%s",gl_ingameRTC_open);
-				}
-				else {
-					sprintf(msg,"%s",gl_ingameRTC_close);
-				}			
-				DrawHZText12(msg,0,x_offset+15,y_offset+line_x*6,(RTC_pos==0)?gl_color_selected:gl_color_text,1);	
+			sprintf(msg,"%s", gl_ingameRTC);
+			DrawHZText12(msg,0,set_offset,y_offset+line_x * 6,gl_color_selected,1);			
+			Draw_select_icon(x_offset,y_offset + line_x * 6, (gl_ingame_RTC_open_status == 0x1));
+			//sprintf(msg,"%s",gl_offRTC_powersave);
+			ClearWithBG((u16*)gImage_SET,x_offset+15, y_offset+line_x*6, 6*6, 13, 1);
+			if(gl_ingame_RTC_open_status){
+				sprintf(msg,"%s",gl_ingameRTC_open);
+			}
+			else {
+				sprintf(msg,"%s",gl_ingameRTC_close);
+			}			
+			DrawHZText12(msg,0,x_offset+15,y_offset+line_x*6,(RTC_pos==0)?gl_color_selected:gl_color_text,1);	
 	
 	
 			u32 offsety;
@@ -412,16 +412,14 @@ u32 Setting_window(void) {
 					edit_datetime[_YEAR] 	= UNBCD(datetime[_YEAR]);
 					edit_datetime[_WKD] 	= UNBCD(datetime[_WKD]&0x7);	
 					
-					if(select==1)
-					{
+					if(select == 1) {
 						addon_sel = 0;
 					}	
-					else if(select==3)
+					else if(select == 3)
 					{								
 						engine_pos = 0;
 					}
-					else if(select==6)
-					{
+					else if(select == 5) {
 						RTC_pos = 0;
 					}
 					edit_sleephotkey[0] = (read5>10)?K_L:read5;
@@ -866,7 +864,7 @@ u32 Setting_window(void) {
 								addon_sel += 3;
 							}
 						}
-						else if(select == 4){
+						else if(select == 3){
 							switch(sleep_pos) {
 								case 0:
 									if(edit_sleephotkey[0]==0) 
@@ -942,7 +940,7 @@ u32 Setting_window(void) {
 									break;
 							}
 						}
-						else if(select == 5){
+						else if(select == 4){
 							switch(rtshotkey_pos) {
 								case 0:
 									if(edit_rtshotkey[0]==0) 
@@ -1151,17 +1149,17 @@ u32 Setting_window(void) {
 						// 			}
 						// 	}	
 						// }
-						else if((select == 3)  && (sleep_pos==3))
+						else if((select == 2)  && (sleep_pos==3))
 						{
 							save_set_info();
 							Set_OK = 0;
 						}			
-						else if((select == 4)  && (rtshotkey_pos==3))
+						else if((select == 3)  && (rtshotkey_pos==3))
 						{
 							save_set_info();
 							Set_OK = 0;	
 						}			
-						else if(select == 5) {
+						else if(select == 4) {
 							switch(RTC_pos) {
 								case 0:gl_ingame_RTC_open_status = !gl_ingame_RTC_open_status;break;
 								case 1:
