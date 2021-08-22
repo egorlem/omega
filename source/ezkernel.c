@@ -2262,7 +2262,7 @@ re_showfile:
   		while(1);
 		}
 			
-		if(page_num==NOR_list){//boot nor game
+		if(page_num == NOR_list){//boot nor game
 			
 			if(pNorFS[show_offset+file_select].have_patch && pNorFS[show_offset+file_select].have_RTS)
 			{	
