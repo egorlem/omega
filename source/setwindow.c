@@ -51,8 +51,7 @@ u16 engine_sel;
 u8 edit_sleephotkey[3]={0};
 u8 edit_rtshotkey[3]={0};
 //---------------------------------------------------------------------------------
-void Show_ver(void)
-{
+void Show_ver(void) {
 	char msg[20];
 	char *ver="K:1.08";
 	u16 FPGAver = Read_FPGA_ver();
@@ -60,8 +59,7 @@ void Show_ver(void)
 	DrawHZText12(msg,0,160,3, gl_color_text,1);	
 }
 //---------------------------------------------------------------------------------
-void Draw_select_icon(u32 X,u32 Y,u32 mode)
-{
+void Draw_select_icon(u32 X,u32 Y,u32 mode) {
 	
 	Clear(X+2, Y+2, 8, 8, gl_color_text, 1);
 	Clear(X+3, Y+3, 6, 6, RGB(4,8,12), 1);
@@ -92,7 +90,7 @@ u32 Setting_window(void) {
 	u8 sleep_pos=0;
 	u8 rtshotkey_pos=0;
 	
-	u8 	engine_pos = 1;			
+	u8 engine_pos = 1;			
 	 
 	u8 datetime[7];
 	u8 edit_datetime[7]={0};
@@ -104,48 +102,49 @@ u32 Setting_window(void) {
 	u8 *str2;
 	
 	Show_ver();
+	
 	select = 0;
 	u32 y_offset = 24;
 	u32 set_offset = 1;
 	u32 x_offset = set_offset+9*6+3;
 	
 	u32 line_x = 17;
-			
-	if(gl_select_lang == 0xE1E1)
-	{
-		language_sel = 0;
-	}
-	else
-	{
-		language_sel = 1;
-	}	
+	
+	// TASK-ZH		
+	// 0xE1E1 = ENG
+	// if(gl_select_lang == 0xE1E1) {
+	// 	language_sel = 0;
+	// } else {
+	// 	language_sel = 1;
+	// }	
+
+	language_sel = 0;
+	
 	v_reset = Read_SET_info(1);
 	v_rts = 	Read_SET_info(2);
 	v_sleep = Read_SET_info(3);
 	v_cheat = Read_SET_info(4);
-	if( (v_reset != 0x0) && (v_reset != 0x1))
-	{
+
+	if( (v_reset != 0x0) && (v_reset != 0x1)) {
 		v_reset = 0x0;
 	}
-	if( (v_rts != 0x0) && (v_rts != 0x1))
-	{
+	
+	if( (v_rts != 0x0) && (v_rts != 0x1)) {
 		v_rts = 0x0;
 	}
-	if( (v_sleep != 0x0) && (v_sleep != 0x1))
-	{
+
+	if( (v_sleep != 0x0) && (v_sleep != 0x1)) {
 		v_sleep = 0x0;
 	}
-	if( (v_cheat != 0x0) && (v_cheat != 0x1))
-	{
+
+	if( (v_cheat != 0x0) && (v_cheat != 0x1)) {
 		v_cheat = 0x0;
 	}
 	
-
 	engine_sel = gl_engine_sel;
 
 	
-	while(1)
-	{
+	while(1) {
 		VBlankIntrWait(); 	
 		
 		if(re_show) {	
@@ -173,15 +172,17 @@ u32 Setting_window(void) {
 				sprintf(msg,"%s",gl_cheat);
 				DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*2,(addon_sel==4)?gl_color_selected:gl_color_text,1);
 			
-			//					
-			sprintf(msg,"%s",gl_language);
-			DrawHZText12(msg,0,set_offset,y_offset+line_x*3,gl_color_selected,1);			
-				Draw_select_icon(x_offset,y_offset+line_x*3,(language_sel == 0x0));
-				Draw_select_icon(x_offset+12*6,y_offset+line_x*3,(language_sel == 0x1));	
-				sprintf(msg,"%s",gl_en_lang);
-				DrawHZText12(msg,0,x_offset+15,y_offset+line_x*3,((language_sel==0)&&currstate&& (2== select))?gl_color_selected:gl_color_text,1);
-				sprintf(msg,"%s",gl_zh_lang);
-				DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*3,((language_sel==1)&&currstate&& (2== select))?gl_color_selected:gl_color_text,1);			
+			// TASK-ZH			
+			
+				// sprintf(msg, "%s", gl_language);
+				// DrawHZText12(msg,0,set_offset,y_offset+line_x*3,gl_color_selected,1);			
+				// 	Draw_select_icon(x_offset,y_offset+line_x*3,(language_sel == 0x0));
+				// 	Draw_select_icon(x_offset+12*6,y_offset+line_x*3,(language_sel == 0x1));	
+				// 	sprintf(msg,"%s",gl_en_lang);
+				// 	DrawHZText12(msg,0,x_offset+15,y_offset+line_x*3,((language_sel==0)&&currstate&& (2== select))?	gl_color_selected:gl_color_text,1);
+				// TASK-ZH
+				// sprintf(msg,"%s",gl_zh_lang);
+				// DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*3,((language_sel==1)&&currstate&& (2== select))?gl_color_selected:gl_color_text,1);			
 			
 			//
 			VBlankIntrWait();			
@@ -225,33 +226,32 @@ u32 Setting_window(void) {
 	
 	
 			u32 offsety;
-			for(line=0;line < 7;line++) {
-				if(Set_OK==1) {
-					if((line== select) && (0== select)&& (edit_pos == 7))
+			// TODO-ZH
+			for(line = 0; line < 6; line++) {
+				if(Set_OK == 1) {
+					if((line == select) && (0 == select) && (edit_pos == 6))
 						clean_color = gl_color_btn_clean;					
-					else if((line== select) && (1== select) && (addon_sel==2)) 
+					else if((line == select) && (1 == select) && (addon_sel == 2)) 
 						clean_color = gl_color_btn_clean;	
-					else if((line== select) && (3== select) && (engine_pos==1)) 
+					else if((line == select) && (3 == select) && (engine_pos == 1)) 
 						clean_color = gl_color_btn_clean;	
-					else if((line== select) && (4== select) && (sleep_pos==3)) 	
+					else if((line == select) && (4 == select) && (sleep_pos == 3)) 	
 						clean_color = gl_color_btn_clean;	
-					else if((line== select) && (5== select) && (rtshotkey_pos==3)) 	
+					else if((line == select) && (5 == select) && (rtshotkey_pos == 3)) 	
 						clean_color = gl_color_btn_clean;		
-					else if((line== select) && (6== select) && (RTC_pos==1)) 
+					else if((line == select) && (6 == select) && (RTC_pos == 1)) 
 						clean_color = gl_color_btn_clean;	
-						
 					else 
 						clean_color = gl_color_MENU_btn;
-				}		
-				else
-				{
-					if(line== select)
+				}	else {
+					if(line == select)
 						clean_color = gl_color_btn_clean;
 					else 
 						clean_color = gl_color_MENU_btn;
 				}	
-				offsety = y_offset + line*line_x;
-				if(line>1) offsety += line_x; 
+
+				offsety = y_offset + line * line_x;
+				if (line > 1) offsety += line_x; 
 					
 				Clear(202,offsety-2 ,30,14,clean_color,1);	
 				
@@ -264,9 +264,9 @@ u32 Setting_window(void) {
 				DrawHZText12(msg,0,200+5,offsety,gl_color_text,1);	
 				VBlankIntrWait();		
 			}						
-		}		
+			}		
 			
-		currstate=Set_OK;		
+		currstate = Set_OK;		
 		switch(currstate) {
 			case 0: //initial state
 				//get date and time 	
@@ -1038,27 +1038,27 @@ u32 Setting_window(void) {
 								addon_sel ++;
 							}
 						}
-						else if(select == 2) //lang
-						{
-							language_sel = 1;								
-						}
-						else if(select ==3)
+						// else if(select == 2) //lang
+						// {
+						// 	language_sel = 1;								
+						// }
+						else if(select == 2)
 						{
 								engine_pos = 1;
 						}
-						else if	(select ==4)
+						else if	(select == 3)
 						{
 							if(sleep_pos<3){
 								sleep_pos ++;
 							}
 						}
-						else if	(select ==5) 
+						else if	(select == 4) 
 						{
 							if(rtshotkey_pos<3){
 								rtshotkey_pos ++;
 							}
 						}
-						else if(select ==6)
+						else if(select == 5)
 						{
 								RTC_pos = 1;
 						}
@@ -1081,25 +1081,25 @@ u32 Setting_window(void) {
 							}		
 						}
 						//lang
+						// else if(select == 2) {
+						// 		language_sel = 0;
+						// }						
 						else if(select == 2) {
-								language_sel = 0;
-						}						
-						else if(select == 3) {
 								engine_pos = 0;
 						}
-						else if(select == 4)	
+						else if(select == 3)	
 						{
 							if(sleep_pos){
 								sleep_pos--;
 							}	
 						}	
-						else if(select ==5)	
+						else if(select == 4)	
 						{
 							if(rtshotkey_pos){
 								rtshotkey_pos--;
 							}		
 						}	
-						else if(select ==6)
+						else if(select == 5)
 						{
 								RTC_pos = 0;
 						}
@@ -1188,8 +1188,7 @@ u32 Setting_window(void) {
 	}//end while(1)
 }
 //---------------------------------------------------------------------------------
-void save_set_info(void)
-{
+void save_set_info(void) {
 	if(language_sel == 0x0){//english						
 		SET_info_buffer[0] = 0xE1E1;
 	}
