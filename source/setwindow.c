@@ -150,7 +150,7 @@ u32 Setting_window(void) {
 		if(re_show) {	
 			//
 			sprintf(msg,"%s",gl_time);
-			DrawHZText12(msg,0,set_offset,y_offset,gl_color_selected,1);	
+			DrawHZText12(msg, 0, set_offset, y_offset, gl_color_selected, 1);	
 
 			//
 			sprintf(msg,"%s",gl_addon);
@@ -187,14 +187,15 @@ u32 Setting_window(void) {
 			//
 			VBlankIntrWait();			
 			sprintf(msg,"%s",gl_engine);
-			DrawHZText12(msg,0,set_offset,y_offset+line_x*4,gl_color_selected,1);
-				Draw_select_icon(x_offset,y_offset+line_x*4,(engine_sel == 0x1));
+			DrawHZText12(msg,0,set_offset,y_offset+line_x * 3,gl_color_selected,1);
+				Draw_select_icon(x_offset,y_offset+line_x * 3,(engine_sel == 0x1));
 				sprintf(msg,"%s",gl_use_engine);
-				DrawHZText12(msg,0,x_offset+15,y_offset+line_x*4,(engine_pos==0)?gl_color_selected:gl_color_text,1);	
+				DrawHZText12(msg,0,x_offset+15,y_offset+line_x * 3,(engine_pos==0)?gl_color_selected:gl_color_text,1);	
 			//	
 			
-			ClearWithBG((u16*)gImage_SET,set_offset, y_offset+line_x*5, 9*6, 13, 1);
-			ClearWithBG((u16*)gImage_SET,set_offset, y_offset+line_x*6, 9*6, 13, 1);
+			ClearWithBG((u16*)gImage_SET,set_offset, y_offset+line_x * 4, 9*6, 13, 1);
+			ClearWithBG((u16*)gImage_SET,set_offset, y_offset+line_x * 5, 9*6, 13, 1);
+			
 			if( (v_rts==1) && (v_cheat == 0)  && (v_reset == 0)  && (v_sleep == 0)  ) {
 				sprintf(msg,"%s"," SAVE KEY");					
 				DrawHZText12(msg,0,set_offset,y_offset+line_x*5,gl_color_selected,1);	
@@ -229,7 +230,7 @@ u32 Setting_window(void) {
 			// TODO-ZH
 			for(line = 0; line < 6; line++) {
 				if(Set_OK == 1) {
-					if((line == select) && (0 == select) && (edit_pos == 6))
+					if((line == select) && (0 == select) && (edit_pos == 7))
 						clean_color = gl_color_btn_clean;					
 					else if((line == select) && (1 == select) && (addon_sel == 2)) 
 						clean_color = gl_color_btn_clean;	
