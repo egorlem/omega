@@ -159,20 +159,20 @@ u32 Setting_window(void) {
 			// ADDON ITEMS
 			// ITEM 1
 			sprintf(msg,"%s", gl_reset);
-			DrawHZText12(msg,0,x_offset+15,y_offset + line_x,(addon_sel == 0)?gl_color_selected:gl_color_text,1);	
-			Draw_select_icon(x_offset+12*6,y_offset + line_x,v_rts);
+			DrawHZText12(msg,0,x_offset+15,y_offset+line_x,(addon_sel == 0)?gl_color_selected:gl_color_text,1);	
+			Draw_select_icon(x_offset+12*6,y_offset+line_x,v_rts);
 			// ITEM 2
 			sprintf(msg,"%s", gl_rts);
-			DrawHZText12(msg,0,x_offset+12*6+15,y_offset + line_x,(addon_sel==1)?gl_color_selected:gl_color_text,1);
+			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x,(addon_sel==1)?gl_color_selected:gl_color_text,1);
 			VBlankIntrWait();	
 			// ITEM 3
-			Draw_select_icon(x_offset,y_offset + line_x*2,v_sleep);
+			Draw_select_icon(x_offset,y_offset+line_x*2,v_sleep);
 			sprintf(msg,"%s",gl_sleep);
-			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 2, (addon_sel==3)?gl_color_selected:gl_color_text,1);	
+			DrawHZText12(msg,0,x_offset+15,y_offset + line_x*2,(addon_sel==3)?gl_color_selected:gl_color_text,1);	
 			// ITEM 4
-			Draw_select_icon(x_offset+12*6,y_offset + line_x * 2, v_cheat);
+			Draw_select_icon(x_offset+12*6,y_offset + line_x *2,v_cheat);
 			sprintf(msg,"%s",gl_cheat);
-			DrawHZText12(msg,0,x_offset+12*6+15,y_offset + line_x * 2,(addon_sel==4)?gl_color_selected:gl_color_text,1);
+			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*2,(addon_sel==4)?gl_color_selected:gl_color_text,1);
 			VBlankIntrWait();	
 			
 			// TASK-ZH			
@@ -188,13 +188,12 @@ u32 Setting_window(void) {
 			// DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*3,((language_sel==1)&&currstate&& (2== select))gl_color_selected:gl_color_text,1);			
 			
 			// ENGINE SECTION
+			VBlankIntrWait();			
 			sprintf(msg, "%s", gl_engine);
 			DrawHZText12(msg, 0, set_offset,y_offset + line_x * 3,gl_color_selected,1);
 			Draw_select_icon(x_offset,y_offset+line_x * 3,(engine_sel == 0x1));
-			
 			sprintf(msg,"%s",gl_use_engine);
 			DrawHZText12(msg,0,x_offset+15,y_offset+line_x * 3,(engine_pos == 0) ? gl_color_selected : gl_color_text, 1);	
-			VBlankIntrWait();			
 			
 			//	
 			ClearWithBG((u16*)gImage_SET, set_offset, y_offset+line_x * 4, 9 * 6, 13, 1);
@@ -216,17 +215,17 @@ u32 Setting_window(void) {
 
 			//RTC
 			sprintf(msg,"%s",gl_ingameRTC);
-			DrawHZText12(msg, 0, set_offset, y_offset+line_x * 6, gl_color_selected, 1);			
-			Draw_select_icon(x_offset,y_offset+line_x * 6, (gl_ingame_RTC_open_status == 0x1));
-			ClearWithBG((u16*)gImage_SET, x_offset + 15, y_offset+line_x * 6, 6 * 6, 13, 1);
-			
-			if(gl_ingame_RTC_open_status) {
-				sprintf(msg,"%s",gl_ingameRTC_open);
-			} else {
-				sprintf(msg,"%s",gl_ingameRTC_close);
-			}			
-			
-			DrawHZText12(msg, 0 ,x_offset + 15, y_offset + line_x * 6, (RTC_pos==0) ?gl_color_selected : gl_color_text, 1);	
+			DrawHZText12(msg,0,set_offset,y_offset+line_x*6,gl_color_selected,1);			
+				Draw_select_icon(x_offset,y_offset+line_x*6,(gl_ingame_RTC_open_status == 0x1));
+				//sprintf(msg,"%s",gl_offRTC_powersave);
+				ClearWithBG((u16*)gImage_SET,x_offset+15, y_offset+line_x*6, 6*6, 13, 1);
+				if(gl_ingame_RTC_open_status){
+					sprintf(msg,"%s",gl_ingameRTC_open);
+				}
+				else {
+					sprintf(msg,"%s",gl_ingameRTC_close);
+				}			
+				DrawHZText12(msg,0,x_offset+15,y_offset+line_x*6,(RTC_pos==0)?gl_color_selected:gl_color_text,1);	
 	
 	
 			u32 offsety;
