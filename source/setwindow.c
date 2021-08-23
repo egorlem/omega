@@ -42,6 +42,15 @@ u8* str_R		   = (u8*)"   R  ";
 u8* str_L		   = (u8*)"   L  ";
 
 
+/* MENU SETTINGS AREA LIST */
+
+#define TIME_AREA 0 
+#define ADDON_AREA 1
+#define ENGINE_AREA 2
+#define SLEEP_AREA 3
+#define MENU_AREA 4 
+#define RTC_AREA 5
+
 u16 v_reset;
 u16 v_rts;
 u16 v_sleep;
@@ -232,18 +241,18 @@ u32 Setting_window(void) {
 			// TODO-ZH
 			for(line = 0; line < 6; line++) {
 				if(Set_OK == 1) {
-					if((line == select) && (0 == select) && (edit_pos == 7))
-						clean_color = gl_color_btn_clean;					
-					else if((line == select) && (1 == select) && (addon_sel == 2)) 
-						clean_color = gl_color_btn_clean;	
-					else if((line == select) && (2 == select) && (engine_pos == 1)) 
-						clean_color = gl_color_btn_clean;	
-					else if((line == select) && (3 == select) && (sleep_pos == 3)) 	
-						clean_color = gl_color_btn_clean;	
-					else if((line == select) && (4 == select) && (rtshotkey_pos == 3)) 	
-						clean_color = gl_color_btn_clean;		
-					else if((line == select) && (5 == select) && (RTC_pos == 1)) 
-						clean_color = gl_color_btn_clean;	
+					if((line == select) && (select == TIME_AREA) && (edit_pos == 7))
+						clean_color = deepGreen;					
+					else if((line == select) && (select == ADDON_AREA) && (addon_sel == 2)) 
+						clean_color = deepGreen;	
+					else if((line == select) && (select == ENGINE_AREA) && (engine_pos == 1)) 
+						clean_color = deepGreen;	
+					else if((line == select) && (select == SLEEP_AREA) && (sleep_pos == 3)) 	
+						clean_color = deepGreen;	
+					else if((line == select) && (select == MENU_AREA) && (rtshotkey_pos == 3)) 	
+						clean_color = deepGreen;		
+					else if((line == select) && (select == RTC_AREA) && (RTC_pos == 1)) 
+						clean_color = deepGreen;	
 					else 
 						clean_color = gl_color_MENU_btn;
 				}	else {

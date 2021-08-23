@@ -86,6 +86,7 @@ extern u16 gl_rts_on;
 extern u16 gl_sleep_on;
 extern u16 gl_cheat_on;
 
+/* COLOR SCHEMA*/
 
 extern u16 gl_color_selected;
 extern u16 gl_color_text;
@@ -97,8 +98,9 @@ extern u16 gl_color_cheat_black;
 extern u16 gl_color_NORFULL;
 extern u16 gl_color_btn_clean;
 
-u32 Setting_window(void);
+extern u16 deepGreen;
 
+u32 Setting_window(void);
 
 u32 LoadRTSfile(TCHAR *filename);
 void ShowTime(u32 page_num ,u32 page_mode);
