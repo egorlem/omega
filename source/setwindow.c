@@ -177,7 +177,7 @@ u32 Setting_window(void) {
 			// ITEM 3
 			Draw_select_icon(x_offset,y_offset+line_x*2,v_sleep);
 			sprintf(msg,"%s",gl_sleep);
-			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 2,(addon_sel==3)?gl_color_selected:gl_color_text,1);	
+			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 2,(addon_sel==3) ? gl_color_selected:gl_color_text,1);	
 			// ITEM 4
 			Draw_select_icon(x_offset+12*6,y_offset + line_x *2,v_cheat);
 			sprintf(msg,"%s",gl_cheat);
@@ -238,7 +238,7 @@ u32 Setting_window(void) {
 						clean_color = gray75; 
 				}	else {
 					// Set_OK == 0
-					if(line == select)
+					if (line == select)
 						clean_color = deepGreen; 
 					else 
 						clean_color = gray75; // seaGreen
@@ -247,14 +247,20 @@ u32 Setting_window(void) {
 				offsety = y_offset + line * line_x;
 				if (line > 1) offsety += line_x; 
 					
-				Clear(202, offsety - 2, 30, 14, clean_color,1);	
+				Clear(202, offsety - 2, 30, 14, clean_color, 1);	
 				
 				if (Set_OK && (line == Set_OK_line)){
 					sprintf(msg, "%s", gl_ok_btn);
-					DrawHZText12(msg, 0, 200 + 5, offsety, baseWhite, 1);
+
+					if (line == Set_OK) {
+						DrawHZText12(msg, 0, 200 + 5, offsety, baseWhite, 1);
+					} else { 
+						DrawHZText12(msg, 0, 200 + 5, offsety, gray50, 1);
+					}
+					
 				} else {
 					sprintf(msg, "%s", gl_set_btn);
-					DrawHZText12(msg, 0, 200 + 5, offsety, gray50, 1);
+					DrawHZText12(msg, 0, 200 + 5, offsety, baseWhite, 1);
 				}
 				VBlankIntrWait();		
 			}						

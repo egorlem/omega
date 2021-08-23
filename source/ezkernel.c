@@ -88,7 +88,7 @@ u16 gl_cheat_on;
 // seaGreen = 0x57EB // #5fffaf
 // deepGreen = 0x2D60 // #005f5f 
 // gray100 = 0x0C63 // #1c1c1c
-// gray75 = 0x00C6 // #30303
+// gray75 = 0x00C6 // #303030
 // gray80 = 0x1CE7 // #3a3a3a 
 // gray50 = 0x4631 // #8a8a8a
 // gray25 = 0x4E73 //  #9e9e9e
@@ -111,7 +111,7 @@ u16 gl_color_text 				= 0x6F7B;
 // Elements color
 u16 deepGreen = 0x2D60;
 u16 gray50 = 0x4631;
-u16 gray75 = 0x00C6;
+u16 gray75 = 0x18C6;
 // Base color
 u16 baseWhite = 0x6F7B;
 
