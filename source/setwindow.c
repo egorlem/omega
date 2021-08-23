@@ -224,18 +224,16 @@ u32 Setting_window(void) {
 
 			//RTC
 			sprintf(msg,"%s", gl_ingameRTC);
-			DrawHZText12(msg,0,set_offset,y_offset+line_x * 6,gl_color_selected,1);			
+			DrawHZText12(msg,0,set_offset,y_offset + line_x * 6,gl_color_selected,1);			
 			Draw_select_icon(x_offset,y_offset + line_x * 6, (gl_ingame_RTC_open_status == 0x1));
 			// sprintf(msg,"%s",gl_offRTC_powersave);
 			ClearWithBG((u16*)gImage_SET, x_offset + 15, y_offset + line_x * 6, 6 * 6, 13, 1);
 			if(gl_ingame_RTC_open_status){
 				sprintf(msg,"%s",gl_ingameRTC_open);
-			}
-			else {
+			} else {
 				sprintf(msg,"%s",gl_ingameRTC_close);
 			}			
 			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 6,(RTC_pos==0)?gl_color_selected:gl_color_text,1);	
-	
 	
 			u32 offsety;
 			// TODO-ZH
@@ -254,13 +252,14 @@ u32 Setting_window(void) {
 					else if((line == select) && (select == RTC_AREA) && (RTC_pos == 1)) 
 						clean_color = deepGreen;	
 					else 
-						clean_color = deepGreen;
+						// TODO UPDATE TO COLOR CHEMA
+						clean_color = 0x2D7F; // red
 				}	else {
 					if(line == select)
-						clean_color = gl_color_btn_clean;
+						clean_color = 0x435A; // yellow 
 					else 
-						clean_color = gl_color_MENU_btn;
-				}	
+						clean_color = 0x57EB; // seaGreen
+					}	
 
 				offsety = y_offset + line * line_x;
 				if (line > 1) offsety += line_x; 
@@ -269,11 +268,11 @@ u32 Setting_window(void) {
 				
 				if(Set_OK && (line == Set_OK_line)){
 					sprintf(msg, "%s", gl_ok_btn);
-				}
-				else {
+					DrawHZText12(msg, 0, 200 + 5, offsety,  0x57EB, 1);	// seaGreen
+				} else {
 					sprintf(msg, "%s", gl_set_btn);
+					DrawHZText12(msg, 0, 200 + 5, offsety,  0x4631, 1);	// gray50
 				}
-				DrawHZText12(msg, 0, 200 + 5, offsety, gl_color_text, 1);	
 				VBlankIntrWait();		
 			}						
 		}		
@@ -300,9 +299,10 @@ u32 Setting_window(void) {
 				u8 HH = UNBCD(datetime[4]&0x3F);
 				u8 MM = UNBCD(datetime[5]&0x7F);
 				u8 SS = UNBCD(datetime[6]&0x7F);
-				if(HH >23)HH=0;
-				if(MM >59)MM=0;
-				if(SS >59)SS=0;
+
+				if (HH >23) HH = 0;
+				if (MM >59) MM = 0;
+				if (SS >59) SS = 0;
 
 				/* Display date. Read binded key */
 				sprintf(msg,"%u/%02u/%02u %02d:%02d:%02d %s",UNBCD(datetime[0])+2000,UNBCD(datetime[1]&0x1F),UNBCD(datetime[2]&0x3F),HH,MM,SS, wkday);
@@ -473,7 +473,7 @@ u32 Setting_window(void) {
 				//if(Set_OK_line==0) {														
 					if(re_show) {																
 						if(select == TIME_AREA){
-							ClearWithBG((u16*)gImage_SET,x_offset, y_offset, 23*6, 13, 1);	
+							ClearWithBG((u16*)gImage_SET,x_offset, y_offset, 23 * 6, 13, 1);	
 							switch(edit_pos) {
 								case 0:clean_pos = x_offset;
 									clean_w = 24;
@@ -499,7 +499,7 @@ u32 Setting_window(void) {
 															
 							}
 							if(	edit_pos < 7)	
-								Clear(clean_pos,y_offset ,clean_w,13,gl_color_btn_clean,1);
+								Clear(clean_pos, y_offset, clean_w, 13, gl_color_btn_clean, 1);
 								
 							char* wkday;
 							switch(edit_datetime[_WKD])
@@ -573,7 +573,7 @@ u32 Setting_window(void) {
 							sprintf(msg, "%s %s  %s", str0, str1, str2);
 							DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 4, gl_color_text, 1);
 						} else if(select == MENU_AREA) {
-							ClearWithBG((u16*)gImage_SET, x_offset, y_offset + line_x * 4, 23 * 6, 13, 1);	
+							ClearWithBG((u16*)gImage_SET, x_offset, y_offset + line_x * 5, 23 * 6, 13, 1);	
 							switch(rtshotkey_pos) {
 								case 0:clean_pos = x_offset+10;
 									break;
@@ -583,7 +583,7 @@ u32 Setting_window(void) {
 									break;								
 								}
 								if(	rtshotkey_pos < 3)	
-									Clear(clean_pos, y_offset + line_x * 4, 36, 13, gl_color_btn_clean, 1);
+									Clear(clean_pos, y_offset + line_x * 5, 36, 13, gl_color_btn_clean, 1);
 								//DEBUG_printf("%x %x %x", edit_rtshotkey[0],edit_rtshotkey[1],edit_rtshotkey[2]);	
 								switch(edit_rtshotkey[0]) {
 									case 0:str0 = str_A;break;
@@ -624,7 +624,7 @@ u32 Setting_window(void) {
 								}	
 
 								sprintf(msg,"%s %s  %s", str0, str1, str2);
-								DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 4, gl_color_text, 1);
+								DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 5, gl_color_text, 1);
 						}	
 					}
 
