@@ -90,6 +90,7 @@ u32 Setting_window(void) {
 	
 	char msg[128];
 	u16 clean_color;
+	u16 menuButtonColor;
 	u16 clean_pos;
 	u16 clean_w;
 	u32 re_show=1;
@@ -218,9 +219,10 @@ u32 Setting_window(void) {
 			}			
 			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 6,(RTC_pos==0)?gl_color_selected:gl_color_text,1);	
 	
+
+			/* BUTTON BACKGROUND */
 			u32 offsety;
-			// TODO-ZH
-			for(line = 0; line < 6; line++) {
+			for (line = 0; line < 6; line++) {
 				if(Set_OK == 1) {
 					if((line == select) && (select == TIME_AREA) && (edit_pos == 7))
 						clean_color = deepGreen;					
@@ -235,9 +237,8 @@ u32 Setting_window(void) {
 					else if((line == select) && (select == RTC_AREA) && (RTC_pos == 1)) 
 						clean_color = deepGreen;	
 					else 
-						clean_color = gray75; 
+						clean_color = gray80; 
 				}	else {
-					// Set_OK == 0
 					if (line == select)
 						clean_color = deepGreen; 
 					else 
@@ -249,18 +250,19 @@ u32 Setting_window(void) {
 					
 				Clear(202, offsety - 2, 30, 14, clean_color, 1);	
 				
+				/* BUTTON TEXT */
+				if (Set_OK == 1) {
+					menuButtonColor = gray50;
+				} else {
+					menuButtonColor = baseWhite;
+				}
+
 				if (Set_OK && (line == Set_OK_line)){
 					sprintf(msg, "%s", gl_ok_btn);
-
-					if (line == Set_OK) {
-						DrawHZText12(msg, 0, 200 + 5, offsety, baseWhite, 1);
-					} else { 
-						DrawHZText12(msg, 0, 200 + 5, offsety, gray50, 1);
-					}
-					
+					DrawHZText12(msg, 0, 200 + 5, offsety, baseWhite, 1);
 				} else {
 					sprintf(msg, "%s", gl_set_btn);
-					DrawHZText12(msg, 0, 200 + 5, offsety, baseWhite, 1);
+					DrawHZText12(msg, 0, 200 + 5, offsety, menuButtonColor, 1);
 				}
 				VBlankIntrWait();		
 			}						

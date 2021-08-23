@@ -102,6 +102,7 @@ extern u16 deepGreen;
 extern u16 baseWhite;
 extern u16 gray50;
 extern u16 gray75;
+extern u16 gray80;
 
 u32 Setting_window(void);
 
