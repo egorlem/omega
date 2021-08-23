@@ -99,6 +99,9 @@ extern u16 gl_color_NORFULL;
 extern u16 gl_color_btn_clean;
 
 extern u16 deepGreen;
+extern u16 baseWhite;
+extern u16 gray50;
+extern u16 gray75;
 
 u32 Setting_window(void);
 

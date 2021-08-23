@@ -55,7 +55,7 @@ u16 v_reset;
 u16 v_rts;
 u16 v_sleep;
 u16 v_cheat;
-u16 language_sel;	
+// u16 language_sel;	
 u16 engine_sel;
 u8 edit_sleephotkey[3]={0};
 u8 edit_rtshotkey[3]={0};
@@ -65,15 +65,15 @@ void Show_ver(void) {
 	char *ver="K:1.08";
 	u16 FPGAver = Read_FPGA_ver();
 	sprintf(msg,"FW:%d %s",FPGAver&0xFF,ver);
-	DrawHZText12(msg,0,160,3, gl_color_text,1);	
+	DrawHZText12(msg, 0, 160, 3, gl_color_text, 1);	
 }
 //---------------------------------------------------------------------------------
 void Draw_select_icon(u32 X,u32 Y,u32 mode) {
-	
-	Clear(X+2, Y+2, 8, 8, gl_color_text, 1);
-	Clear(X+3, Y+3, 6, 6, RGB(4,8,12), 1);
-	if(mode)
+	Clear(X + 2, Y + 2, 8, 8, gl_color_text, 1);
+	Clear(X + 3, Y + 3, 6, 6, RGB(4,8,12), 1);
+	if (mode) { 
 		Clear(X+4, Y+4, 4, 4, gl_color_selected, 1);
+	}
 }
 //---------------------------------------------------------------------------------
 u32 Setting_window(void) {
@@ -127,7 +127,7 @@ u32 Setting_window(void) {
 	// 	language_sel = 1;
 	// }	
 
-	language_sel = 0;
+	// language_sel = 0;
 	
 	v_reset = Read_SET_info(1);
 	v_rts = 	Read_SET_info(2);
@@ -156,7 +156,7 @@ u32 Setting_window(void) {
 	while(1) {
 		VBlankIntrWait(); 	
 		
-		if(re_show) {	
+		if (re_show) {	
 			// TIME SECTION
 			sprintf(msg, "%s", gl_time);
 			DrawHZText12(msg, 0, set_offset, y_offset, gl_color_selected, 1);	
@@ -171,7 +171,7 @@ u32 Setting_window(void) {
 			DrawHZText12(msg,0,x_offset + 15, y_offset + line_x, (addon_sel == 0) ? gl_color_selected : gl_color_text, 1);	
 			Draw_select_icon(x_offset + 12 * 6, y_offset + line_x, v_rts );
 			// ITEM 2
-			sprintf(msg,"%s", gl_rts);
+			sprintf(msg, "%s", gl_rts);
 			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x,(addon_sel==1)?gl_color_selected:gl_color_text,1);
 			VBlankIntrWait();	
 			// ITEM 3
@@ -182,20 +182,7 @@ u32 Setting_window(void) {
 			Draw_select_icon(x_offset+12*6,y_offset + line_x *2,v_cheat);
 			sprintf(msg,"%s",gl_cheat);
 			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*2,(addon_sel==4)?gl_color_selected:gl_color_text,1);
-			VBlankIntrWait();	
-			
-			// TASK-ZH			
-			
-			// sprintf(msg, "%s", gl_language);
-			// DrawHZText12(msg,0,set_offset,y_offset+line_x*3,gl_color_selected,1);			
-			// 	Draw_select_icon(x_offset,y_offset+line_x*3,(language_sel == 0x0));
-			// 	Draw_select_icon(x_offset+12*6,y_offset+line_x*3,(language_sel == 0x1));	
-			// 	sprintf(msg,"%s",gl_en_lang);
-			// 	DrawHZText12(msg,0,x_offset+15,y_offset+line_x*3,((language_sel==0)&&currstate&& (2== select))?gl_color_selected:gl_color_text,1);
-			// TASK-ZH
-			// sprintf(msg,"%s",gl_zh_lang);
-			// DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*3,((language_sel==1)&&currstate&& (2== select))gl_color_selected:gl_color_text,1);			
-			
+			VBlankIntrWait();		
 			// ENGINE SECTION
 			VBlankIntrWait();			
 			sprintf(msg, "%s", gl_engine);
@@ -203,11 +190,7 @@ u32 Setting_window(void) {
 			Draw_select_icon(x_offset,y_offset+line_x * 3,(engine_sel == 0x1));
 			sprintf(msg,"%s",gl_use_engine);
 			DrawHZText12(msg,0,x_offset+15,y_offset+line_x * 3,(engine_pos == 0) ? gl_color_selected : gl_color_text, 1);	
-		
-			//	
-			// ClearWithBG((u16*)gImage_SET, set_offset, y_offset + line_x * 4, 9 * 6, 13, 1);
-			// ClearWithBG((u16*)gImage_SET, set_offset, y_offset + line_x * 5, 9 * 6, 13, 1);
-
+	
 			if ((v_rts == 1) && (v_cheat == 0) && (v_reset == 0) && (v_sleep == 0)) {
 				sprintf(msg,"%s"," SAVE KEY");					
 				DrawHZText12(msg,0,set_offset,y_offset + line_x * 4,gl_color_selected,1);	
@@ -252,13 +235,13 @@ u32 Setting_window(void) {
 					else if((line == select) && (select == RTC_AREA) && (RTC_pos == 1)) 
 						clean_color = deepGreen;	
 					else 
-						// TODO UPDATE TO COLOR CHEMA
-						clean_color = 0x2D7F; // red
+						clean_color = gray75; 
 				}	else {
+					// Set_OK == 0
 					if(line == select)
-						clean_color = 0x435A; // yellow 
+						clean_color = deepGreen; 
 					else 
-						clean_color = 0x57EB; // seaGreen
+						clean_color = gray75; // seaGreen
 					}	
 
 				offsety = y_offset + line * line_x;
@@ -266,12 +249,12 @@ u32 Setting_window(void) {
 					
 				Clear(202, offsety - 2, 30, 14, clean_color,1);	
 				
-				if(Set_OK && (line == Set_OK_line)){
+				if (Set_OK && (line == Set_OK_line)){
 					sprintf(msg, "%s", gl_ok_btn);
-					DrawHZText12(msg, 0, 200 + 5, offsety,  0x57EB, 1);	// seaGreen
+					DrawHZText12(msg, 0, 200 + 5, offsety, baseWhite, 1);
 				} else {
 					sprintf(msg, "%s", gl_set_btn);
-					DrawHZText12(msg, 0, 200 + 5, offsety,  0x4631, 1);	// gray50
+					DrawHZText12(msg, 0, 200 + 5, offsety, gray50, 1);
 				}
 				VBlankIntrWait();		
 			}						
@@ -1142,16 +1125,13 @@ u32 Setting_window(void) {
 					}
 				break	;			
 		}//end switch 		
-	}//end while(1)
+	} //end while(1)
 }
-//---------------------------------------------------------------------------------
+
+/* SETTINGS STATE */
 void save_set_info(void) {
-	// if(language_sel == 0x0){//english						
+	/* 0xE2E2 = ZH	0xE1E1 = ENG */
 	SET_info_buffer[0] = 0xE1E1;
-	// }
-	// else{					
-	// 	SET_info_buffer[0] = 0xE2E2;
-	// }
 	SET_info_buffer[1] = v_reset;
 	SET_info_buffer[2] = v_rts;
 	SET_info_buffer[3] = v_sleep;

@@ -106,8 +106,15 @@ u16 gl_cheat_on;
 u16 gl_color_selected 		= 0x5750;
 u16 gl_color_text 				= 0x6F7B;
 // RGB(00, 95, 00);
-// u16 deepGreen = 0x2D60;
+
+/* COLOR SCHEMA */
+// Elements color
 u16 deepGreen = 0x2D60;
+u16 gray50 = 0x4631;
+u16 gray75 = 0x00C6;
+// Base color
+u16 baseWhite = 0x6F7B;
+
 u16 gl_color_MENU_btn			= 0x00C6;;
 u16 gl_color_cheat_count  = RGB(00,31,00);
 u16 gl_color_cheat_black  = RGB(00,00,00);
