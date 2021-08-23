@@ -237,12 +237,12 @@ u32 Setting_window(void) {
 					else if((line == select) && (select == RTC_AREA) && (RTC_pos == 1)) 
 						clean_color = deepGreen;	
 					else 
-						clean_color = gray100; 
+						clean_color = gray80; 
 				}	else {
 					if (line == select)
 						clean_color = deepGreen; 
 					else 
-						clean_color = gray80; // seaGreen
+						clean_color = gray75; // seaGreen
 					}	
 
 				offsety = y_offset + line * line_x;
@@ -252,7 +252,7 @@ u32 Setting_window(void) {
 				
 				/* BUTTON TEXT */
 				if (Set_OK == 1) {
-					menuButtonColor = gray75;
+					menuButtonColor = gray50;
 				} else {
 					menuButtonColor = baseWhite;
 				}

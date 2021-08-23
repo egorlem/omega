@@ -113,7 +113,6 @@ u16 deepGreen = 0x2D60;
 u16 gray50 = 0x4631;
 u16 gray75 = 0x18C6;
 u16 gray80 = 0x1CE7;
-u16 gray100 = 0x0C63;
 // Base color
 u16 baseWhite = 0x6F7B;
 
