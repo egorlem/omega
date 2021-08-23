@@ -307,7 +307,7 @@ u32 Setting_window(void) {
 				/* Display date. Read binded key */
 				sprintf(msg,"%u/%02u/%02u %02d:%02d:%02d %s",UNBCD(datetime[0])+2000,UNBCD(datetime[1]&0x1F),UNBCD(datetime[2]&0x3F),HH,MM,SS, wkday);
 				ClearWithBG((u16*)gImage_SET,x_offset, y_offset, 22 * 6, 13, 1);	
-				DrawHZText12(msg,0,x_offset,y_offset,gl_color_text,1);	
+				DrawHZText12(msg, 0, x_offset, y_offset, gl_color_text, 1);	
 				VBlankIntrWait();
 
 				u16 read5 = Read_SET_info(5); 
@@ -358,7 +358,7 @@ u32 Setting_window(void) {
 
 				/* Display sleep hotkey. Read binded key */
 				sprintf(msg,"%s %s  %s", str0, str1, str2); 
-				DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 3, gl_color_text, 1);
+				DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 4, gl_color_text, 1);
 				
 				u16 read8 = Read_SET_info(8); 
 				u16 read9 = Read_SET_info(9); 
@@ -408,7 +408,7 @@ u32 Setting_window(void) {
 
 				/* Display menu hot key */
 				sprintf(msg,"%s %s  %s",str0,str1,str2);
-				DrawHZText12(msg, 0, x_offset + 10, y_offset +line_x * 4, gl_color_text,1);
+				DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 5, gl_color_text,1);
 				
 
 				/* Keys behavior in settings screen */
