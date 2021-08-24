@@ -1130,6 +1130,22 @@ u32 Setting_window(void) {
 							}	
 						}			
 						re_show = 1;
+		
+					} else if(isKeyDown & KEY_B) { 
+						if ((select == TIME_AREA) && (edit_pos != 7)) {
+							edit_pos = 7;
+						} else if ((select == ADDON_AREA) && (addon_sel != 5)) {
+							addon_sel = 5;
+						} else if ((select == ENGINE_AREA) && (engine_pos != 1)) {
+							engine_pos = 1;
+						} else if ((select == SLEEP_AREA) && (sleep_pos != 3)) {
+							sleep_pos = 3;
+						}	else if ((select == MENU_AREA) && (rtshotkey_pos != 3)) {
+							rtshotkey_pos = 3;
+						}	else if ((select == RTC_AREA) && (RTC_pos != 1)) {
+							RTC_pos = 1;
+						}
+						re_show = 1;
 					}
 				break	;			
 		}//end switch 		
