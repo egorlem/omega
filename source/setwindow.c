@@ -169,20 +169,20 @@ u32 Setting_window(void) {
 			// ADDON ITEMS
 			// ITEM 1
 			sprintf(msg,"%s", gl_reset);
-			DrawHZText12(msg,0,x_offset + 15, y_offset + line_x, (addon_sel == 0) ? gl_color_selected : menuButtonColor, 1);	
+			DrawHZText12(msg,0,x_offset + 15, y_offset + line_x, (addon_sel == 0) ? gl_color_selected : gl_color_text, 1);	
 			Draw_select_icon(x_offset + 12 * 6, y_offset + line_x, v_rts );
 			// ITEM 2
 			sprintf(msg, "%s", gl_rts);
-			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x,(addon_sel==1)?gl_color_selected:menuButtonColor,1);
+			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x,(addon_sel==1)?gl_color_selected:gl_color_text,1);
 			VBlankIntrWait();	
 			// ITEM 3
 			Draw_select_icon(x_offset,y_offset+line_x*2,v_sleep);
 			sprintf(msg,"%s",gl_sleep);
-			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 2,(addon_sel==3) ? gl_color_selected:menuButtonColor,1);	
+			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 2,(addon_sel==3) ? gl_color_selected:gl_color_text,1);	
 			// ITEM 4
 			Draw_select_icon(x_offset+12*6,y_offset + line_x *2,v_cheat);
 			sprintf(msg,"%s",gl_cheat);
-			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*2,(addon_sel==4)?gl_color_selected:menuButtonColor,1);
+			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*2,(addon_sel==4)?gl_color_selected:gl_color_text,1);
 			VBlankIntrWait();		
 			// ENGINE SECTION
 			VBlankIntrWait();			
@@ -190,7 +190,7 @@ u32 Setting_window(void) {
 			DrawHZText12(msg, 0, set_offset,y_offset + line_x * 3,gl_color_selected,1);
 			Draw_select_icon(x_offset,y_offset+line_x * 3,(engine_sel == 0x1));
 			sprintf(msg,"%s",gl_use_engine);
-			DrawHZText12(msg,0,x_offset+15,y_offset+line_x * 3,(engine_pos == 0) ? gl_color_selected : menuButtonColor, 1);	
+			DrawHZText12(msg,0,x_offset+15,y_offset+line_x * 3,(engine_pos == 0) ? gl_color_selected : gl_color_text, 1);	
 	
 			if ((v_rts == 1) && (v_cheat == 0) && (v_reset == 0) && (v_sleep == 0)) {
 				sprintf(msg,"%s"," SAVE KEY");					
@@ -217,7 +217,7 @@ u32 Setting_window(void) {
 			} else {
 				sprintf(msg,"%s",gl_ingameRTC_close);
 			}			
-			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 6,(RTC_pos==0)?gl_color_selected:menuButtonColor,1);	
+			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 6,(RTC_pos==0)?gl_color_selected:gl_color_text,1);	
 	
 
 			/* BUTTON BACKGROUND */
@@ -298,7 +298,7 @@ u32 Setting_window(void) {
 				/* Display date. Read binded key */
 				sprintf(msg,"%u/%02u/%02u %02d:%02d:%02d %s",UNBCD(datetime[0])+2000,UNBCD(datetime[1]&0x1F),UNBCD(datetime[2]&0x3F),HH,MM,SS, wkday);
 				ClearWithBG((u16*)gImage_SET,x_offset, y_offset, 22 * 6, 13, 1);	
-				DrawHZText12(msg, 0, x_offset, y_offset, menuButtonColor, 1);	
+				DrawHZText12(msg, 0, x_offset, y_offset, gl_color_text, 1);	
 				VBlankIntrWait();
 
 				u16 read5 = Read_SET_info(5); 
@@ -399,7 +399,7 @@ u32 Setting_window(void) {
 
 				/* Display menu hot key */
 				sprintf(msg,"%s %s  %s",str0,str1,str2);
-				DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 5, menuButtonColor,1);
+				DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 5, gl_color_text,1);
 				
 
 				/* Keys behavior in settings screen */
@@ -505,7 +505,7 @@ u32 Setting_window(void) {
 								default:wkday = gl_Sun;break;	
 							}						
 							sprintf(msg,"20%02d/%02d/%02d %02d:%02d:%02d %s",edit_datetime[_YEAR],edit_datetime[_MONTH],edit_datetime[_DAY],edit_datetime[_HOUR],edit_datetime[_MIN],edit_datetime[_SEC] ,wkday);
-							DrawHZText12(msg,0,x_offset,y_offset,menuButtonColor,1);	
+							DrawHZText12(msg,0,x_offset,y_offset,gl_color_text,1);	
 						}
 						else if(select == SLEEP_AREA) {
 							ClearWithBG((u16*)gImage_SET,x_offset, y_offset+line_x * 4, 23 * 6, 13, 1);	
@@ -562,7 +562,7 @@ u32 Setting_window(void) {
 							}	
 
 							sprintf(msg, "%s %s  %s", str0, str1, str2);
-							DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 4, menuButtonColor, 1);
+							DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 4, gl_color_text, 1);
 						} else if(select == MENU_AREA) {
 							ClearWithBG((u16*)gImage_SET, x_offset, y_offset + line_x * 5, 23 * 6, 13, 1);	
 							switch(rtshotkey_pos) {
@@ -615,7 +615,7 @@ u32 Setting_window(void) {
 								}	
 
 								sprintf(msg,"%s %s  %s", str0, str1, str2);
-								DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 5, menuButtonColor, 1);
+								DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 5, gl_color_text, 1);
 						}	
 					}
 
