@@ -62,7 +62,7 @@ u8 edit_rtshotkey[3]={0};
 //---------------------------------------------------------------------------------
 void Show_ver(void) {
 	char msg[20];
-	char *ver="K:1.08";
+	char *ver="v 021011";
 	u16 FPGAver = Read_FPGA_ver();
 	sprintf(msg,"FW:%d %s",FPGAver&0xFF,ver);
 	DrawHZText12(msg, 0, 160, 3, gl_color_text, 1);	
@@ -621,7 +621,7 @@ u32 Setting_window(void) {
 
 					re_show = 0;		
 					/* Keys behavior in settings item area */
-					setRepeat(10, 1);	
+					// setRepeat(10, 1);	
 					scanKeys();
 					isKeyDown = keysDown();
 					isKeyDownRepeat = keysDownRepeat();
