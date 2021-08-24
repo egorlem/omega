@@ -158,11 +158,10 @@ u32 Setting_window(void) {
 		VBlankIntrWait(); 	
 		
 		if (re_show) {	
-			VBlankIntrWait();
 			// TIME SECTION
 			sprintf(msg, "%s", gl_time);
 			DrawHZText12(msg, 0, set_offset, y_offset, gl_color_selected, 1);	
-
+			VBlankIntrWait();
 			// ADDON SECTION
 			sprintf(msg, "%s", gl_addon);
 			DrawHZText12(msg, 0, set_offset, y_offset + line_x, gl_color_selected, 1);	
