@@ -157,40 +157,47 @@ u32 Setting_window(void) {
 	while(1) {
 		VBlankIntrWait(); 	
 		
-		if (re_show) {	
+		if (re_show) {
 			// TIME SECTION
 			sprintf(msg, "%s", gl_time);
 			DrawHZText12(msg, 0, set_offset, y_offset, gl_color_selected, 1);	
-
+	 		VBlankIntrWait();
 			// ADDON SECTION
 			sprintf(msg, "%s", gl_addon);
 			DrawHZText12(msg, 0, set_offset, y_offset + line_x, gl_color_selected, 1);	
 			Draw_select_icon(x_offset, y_offset + line_x, v_reset);
+			VBlankIntrWait();
 			// ADDON ITEMS
 			// ITEM 1
 			sprintf(msg,"%s", gl_reset);
 			DrawHZText12(msg,0,x_offset + 15, y_offset + line_x, (addon_sel == 0) ? gl_color_selected : gl_color_text, 1);	
 			Draw_select_icon(x_offset + 12 * 6, y_offset + line_x, v_rts );
+			VBlankIntrWait();
 			// ITEM 2
 			sprintf(msg, "%s", gl_rts);
 			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x,(addon_sel==1)?gl_color_selected:gl_color_text,1);
-			VBlankIntrWait();	
+			VBlankIntrWait();
+			// VBlankIntrWait();	
 			// ITEM 3
 			Draw_select_icon(x_offset,y_offset+line_x*2,v_sleep);
 			sprintf(msg,"%s",gl_sleep);
 			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 2,(addon_sel==3) ? gl_color_selected:gl_color_text,1);	
+			VBlankIntrWait();
 			// ITEM 4
 			Draw_select_icon(x_offset+12*6,y_offset + line_x *2,v_cheat);
 			sprintf(msg,"%s",gl_cheat);
 			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*2,(addon_sel==4)?gl_color_selected:gl_color_text,1);
-			VBlankIntrWait();		
+			VBlankIntrWait();
+			// VBlankIntrWait();		
 			// ENGINE SECTION
-			VBlankIntrWait();			
+			// VBlankIntrWait();			
 			sprintf(msg, "%s", gl_engine);
 			DrawHZText12(msg, 0, set_offset,y_offset + line_x * 3,gl_color_selected,1);
 			Draw_select_icon(x_offset,y_offset+line_x * 3,(engine_sel == 0x1));
+			VBlankIntrWait();
 			sprintf(msg,"%s",gl_use_engine);
 			DrawHZText12(msg,0,x_offset+15,y_offset+line_x * 3,(engine_pos == 0) ? gl_color_selected : gl_color_text, 1);	
+			VBlankIntrWait();
 	
 			if ((v_rts == 1) && (v_cheat == 0) && (v_reset == 0) && (v_sleep == 0)) {
 				sprintf(msg,"%s"," SAVE KEY");					
@@ -205,11 +212,13 @@ u32 Setting_window(void) {
 				sprintf(msg,"%s",gl_hot_key2);
 				DrawHZText12(msg,0,set_offset,y_offset + line_x * 5,gl_color_selected,1);		
 			}
+			VBlankIntrWait();
 
 			//RTC
 			sprintf(msg,"%s", gl_ingameRTC);
 			DrawHZText12(msg,0,set_offset,y_offset + line_x * 6,gl_color_selected,1);			
 			Draw_select_icon(x_offset,y_offset + line_x * 6, (gl_ingame_RTC_open_status == 0x1));
+			VBlankIntrWait();
 			// sprintf(msg,"%s",gl_offRTC_powersave);
 			ClearWithBG((u16*)gImage_SET, x_offset + 15, y_offset + line_x * 6, 6 * 6, 13, 1);
 			if(gl_ingame_RTC_open_status){
@@ -218,6 +227,7 @@ u32 Setting_window(void) {
 				sprintf(msg,"%s",gl_ingameRTC_close);
 			}			
 			DrawHZText12(msg,0,x_offset+15,y_offset + line_x * 6,(RTC_pos==0)?gl_color_selected:gl_color_text,1);	
+			VBlankIntrWait();
 	
 
 			/* BUTTON BACKGROUND */
@@ -432,7 +442,7 @@ u32 Setting_window(void) {
 						sleep_pos = 0;
 					}	else if (select == MENU_AREA) {
 						rtshotkey_pos = 0;
-					}	else if (select == RTC_AREA) && (RTC_pos != 1) {
+					}	else if ((select == RTC_AREA) && (RTC_pos != 1)) {
 						RTC_pos = 0;
 					}
 
@@ -1074,13 +1084,13 @@ u32 Setting_window(void) {
 						}
 						re_show = 1;	
 					} else if(isKeyDown & KEY_A) {
-						if ((select == TIME_AREA) && (edit_pos == 7)){
+						if ((select == TIME_AREA) && (edit_pos == 7)) {
 							rtc_enable();
 							rtc_set(edit_datetime);
 							rtc_disenable();
 							delay(0x200);
 							Set_OK = 0;//!Set_OK;
-						} else if(select == ADDON_AREA)  {
+						} else if (select == ADDON_AREA) {
 							switch(addon_sel) {
 								case 0:v_reset = !v_reset;break;
 								case 1:v_rts   = !v_rts;break;
@@ -1137,8 +1147,8 @@ u32 Setting_window(void) {
 					} else if(isKeyDown & KEY_B) { 
 						if ((select == TIME_AREA) && (edit_pos != 7)) {
 							edit_pos = 7;
-						} else if ((select == ADDON_AREA) && (addon_sel != 3)) {
-							addon_sel = 3;
+						} else if ((select == ADDON_AREA) && (addon_sel != 2)) {
+							addon_sel = 2;
 						} else if ((select == ENGINE_AREA) && (engine_pos != 1)) {
 							engine_pos = 1;
 						} else if ((select == SLEEP_AREA) && (sleep_pos != 3)) {
