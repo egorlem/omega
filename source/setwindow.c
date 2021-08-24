@@ -433,7 +433,7 @@ u32 Setting_window(void) {
 						sleep_pos = 0;
 					}	else if (select == MENU_AREA) {
 						rtshotkey_pos = 0;
-					}	else if ((select == RTC_AREA) && (RTC_pos != 1)) {
+					}	else if (select == RTC_AREA) {
 						RTC_pos = 0;
 					}
 
@@ -1138,8 +1138,8 @@ u32 Setting_window(void) {
 					} else if(isKeyDown & KEY_B) { 
 						if ((select == TIME_AREA) && (edit_pos != 7)) {
 							edit_pos = 7;
-						} else if ((select == ADDON_AREA) && (addon_sel != 3)) {
-							addon_sel = 3;
+						} else if ((select == ADDON_AREA) && (addon_sel != 4)) {
+							addon_sel = 4;
 						} else if ((select == ENGINE_AREA) && (engine_pos != 1)) {
 							engine_pos = 1;
 						} else if ((select == SLEEP_AREA) && (sleep_pos != 3)) {
