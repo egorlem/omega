@@ -421,15 +421,18 @@ u32 Setting_window(void) {
 					edit_datetime[_MONTH] = UNBCD(datetime[_MONTH]&0x1F);
 					edit_datetime[_YEAR] 	= UNBCD(datetime[_YEAR]);
 					edit_datetime[_WKD] 	= UNBCD(datetime[_WKD]&0x7);	
-					
-					if (select == ADDON_AREA) {
-						// set position in area
+	
+					if (select == TIME_AREA) {
+						edit_pos = 0;
+					} else if (select == ADDON_AREA) {
 						addon_sel = 0;
-					} else if(select == ENGINE_AREA) {	
-						// set position in area							
+					} else if (select == ENGINE_AREA) {
 						engine_pos = 0;
-					} else if(select == RTC_AREA) {
-						// set position in area
+					} else if (select == SLEEP_AREA) {
+						sleep_pos = 0;
+					}	else if (select == MENU_AREA) {
+						rtshotkey_pos = 0;
+					}	else if (select == RTC_AREA) && (RTC_pos != 1) {
 						RTC_pos = 0;
 					}
 
@@ -1134,8 +1137,8 @@ u32 Setting_window(void) {
 					} else if(isKeyDown & KEY_B) { 
 						if ((select == TIME_AREA) && (edit_pos != 7)) {
 							edit_pos = 7;
-						} else if ((select == ADDON_AREA) && (addon_sel != 5)) {
-							addon_sel = 5;
+						} else if ((select == ADDON_AREA) && (addon_sel != 3)) {
+							addon_sel = 3;
 						} else if ((select == ENGINE_AREA) && (engine_pos != 1)) {
 							engine_pos = 1;
 						} else if ((select == SLEEP_AREA) && (sleep_pos != 3)) {
