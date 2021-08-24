@@ -242,7 +242,7 @@ u32 Setting_window(void) {
 					if (line == select)
 						clean_color = deepGreen; 
 					else 
-						clean_color = gray80; // seaGreen
+						clean_color = gray100; // seaGreen
 					}	
 
 				offsety = y_offset + line * line_x;
@@ -349,7 +349,7 @@ u32 Setting_window(void) {
 
 				/* Display sleep hotkey. Read binded key */
 				sprintf(msg,"%s %s  %s", str0, str1, str2); 
-				DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 4, gl_color_text, 1);
+				DrawHZText12(msg, 0, x_offset + 10, y_offset + line_x * 4, menuButtonColor, 1);
 				
 				u16 read8 = Read_SET_info(8); 
 				u16 read9 = Read_SET_info(9); 
