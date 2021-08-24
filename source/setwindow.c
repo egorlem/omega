@@ -272,6 +272,7 @@ u32 Setting_window(void) {
 		switch(currstate) {
 			case 0: //initial state
 				//get date and time 	
+				VBlankIntrWait();
 				rtc_enable();
 				rtc_get(datetime);
 				rtc_disenable();				
@@ -299,7 +300,7 @@ u32 Setting_window(void) {
 				sprintf(msg,"%u/%02u/%02u %02d:%02d:%02d %s",UNBCD(datetime[0])+2000,UNBCD(datetime[1]&0x1F),UNBCD(datetime[2]&0x3F),HH,MM,SS, wkday);
 				ClearWithBG((u16*)gImage_SET,x_offset, y_offset, 22 * 6, 13, 1);	
 				DrawHZText12(msg, 0, x_offset, y_offset, gl_color_text, 1);	
-				VBlankIntrWait();
+			
 
 				u16 read5 = Read_SET_info(5); 
 				u16 read6 = Read_SET_info(6); 
