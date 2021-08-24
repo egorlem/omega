@@ -158,6 +158,7 @@ u32 Setting_window(void) {
 		VBlankIntrWait(); 	
 		
 		if (re_show) {	
+			VBlankIntrWait();
 			// TIME SECTION
 			sprintf(msg, "%s", gl_time);
 			DrawHZText12(msg, 0, set_offset, y_offset, gl_color_selected, 1);	
@@ -174,7 +175,7 @@ u32 Setting_window(void) {
 			// ITEM 2
 			sprintf(msg, "%s", gl_rts);
 			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x,(addon_sel==1)?gl_color_selected:gl_color_text,1);
-			VBlankIntrWait();	
+			// VBlankIntrWait();	
 			// ITEM 3
 			Draw_select_icon(x_offset,y_offset+line_x*2,v_sleep);
 			sprintf(msg,"%s",gl_sleep);
@@ -183,15 +184,15 @@ u32 Setting_window(void) {
 			Draw_select_icon(x_offset+12*6,y_offset + line_x *2,v_cheat);
 			sprintf(msg,"%s",gl_cheat);
 			DrawHZText12(msg,0,x_offset+12*6+15,y_offset+line_x*2,(addon_sel==4)?gl_color_selected:gl_color_text,1);
-			VBlankIntrWait();		
+			// VBlankIntrWait();		
 			// ENGINE SECTION
-			VBlankIntrWait();			
+			// VBlankIntrWait();			
 			sprintf(msg, "%s", gl_engine);
 			DrawHZText12(msg, 0, set_offset,y_offset + line_x * 3,gl_color_selected,1);
 			Draw_select_icon(x_offset,y_offset+line_x * 3,(engine_sel == 0x1));
 			sprintf(msg,"%s",gl_use_engine);
 			DrawHZText12(msg,0,x_offset+15,y_offset+line_x * 3,(engine_pos == 0) ? gl_color_selected : gl_color_text, 1);	
-	
+
 			if ((v_rts == 1) && (v_cheat == 0) && (v_reset == 0) && (v_sleep == 0)) {
 				sprintf(msg,"%s"," SAVE KEY");					
 				DrawHZText12(msg,0,set_offset,y_offset + line_x * 4,gl_color_selected,1);	
@@ -264,7 +265,7 @@ u32 Setting_window(void) {
 					sprintf(msg, "%s", gl_set_btn);
 					DrawHZText12(msg, 0, 200 + 5, offsety, menuButtonColor, 1);
 				}
-				VBlankIntrWait();		
+				// VBlankIntrWait();		
 			}						
 		}		
 			
@@ -299,7 +300,7 @@ u32 Setting_window(void) {
 				sprintf(msg,"%u/%02u/%02u %02d:%02d:%02d %s",UNBCD(datetime[0])+2000,UNBCD(datetime[1]&0x1F),UNBCD(datetime[2]&0x3F),HH,MM,SS, wkday);
 				ClearWithBG((u16*)gImage_SET,x_offset, y_offset, 22 * 6, 13, 1);	
 				DrawHZText12(msg, 0, x_offset, y_offset, gl_color_text, 1);	
-				VBlankIntrWait();
+				// VBlankIntrWait();
 
 				u16 read5 = Read_SET_info(5); 
 				u16 read6 = Read_SET_info(6); 
