@@ -242,7 +242,7 @@ u32 Setting_window(void) {
 					if (line == select)
 						clean_color = deepGreen; 
 					else 
-						clean_color = gray75; // seaGreen
+						clean_color = gray100; // seaGreen
 					}	
 
 				offsety = y_offset + line * line_x;
@@ -252,7 +252,7 @@ u32 Setting_window(void) {
 				
 				/* BUTTON TEXT */
 				if (Set_OK == 1) {
-					menuButtonColor = gray50;
+					menuButtonColor = gray75;
 				} else {
 					menuButtonColor = baseWhite;
 				}
