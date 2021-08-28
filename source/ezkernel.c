@@ -1423,6 +1423,8 @@ void SD_list_L_START(show_offset,file_select,folder_total) {
 	}	
 }
 //---------------------------------------------------------------------------------
+
+/* Remove gb gbc nes support at 843fc59 TODO: Delete another dependencies*/
 u32 Check_file_type(TCHAR *pfilename) {
 	u32 strlen8 = strlen(pfilename) ;
 	//u32 is_EMU;
@@ -1430,7 +1432,7 @@ u32 Check_file_type(TCHAR *pfilename) {
 	// 	return 0;
 	// }	else if(!strcasecmp(&(pfilename[strlen8-3]), "gbc")) {
   //   return 1;
-	// } else if(!strcasecmp(&(pfilename[strlen8-2]), "gb")) {
+	// } else if(!strcasecmp(&(pfilename[strlen8-2]), "gb")) {:
   //   return 2;
 	// } else if(!strcasecmp(&(pfilename[strlen8-3]), "nes")){
   //   return 3;
