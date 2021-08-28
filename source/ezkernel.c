@@ -664,9 +664,9 @@ void renderBootDetail(u32 menu_select, PAGE_NUM page, u32 havecht, u32 Save_num,
 		if (page == NOR_list)
 			DrawHZText12(gl_nor_op[line], 32, 60, y_offset + line * 14, name_color, 1);
 		else {
-			//cheat
+			//cheat 
 			if (line == 5) {
-				sprintf(msg,"%s(%d)",gl_rom_menu[line], gl_cheat_count);
+				sprintf(msg,"%s(%d)", gl_rom_menu[line], gl_cheat_count);
 				DrawHZText12(msg, 32, 60, y_offset + line * 14, name_color, 1);
 			} else {
 				DrawHZText12(gl_rom_menu[line], 32, 60, y_offset + line * 14, name_color, 1);
@@ -1411,7 +1411,7 @@ void SD_list_L_START(show_offset,file_select,folder_total) {
 	while(1) {
 		VBlankIntrWait();
 		scanKeys();
-		u16 keysdown  = keysDown();
+		u16 keysdown = keysDown();
 		if (keysdown & KEY_A) {
 			TCHAR *pdelfilename;			
 			pdelfilename = pFilename_buffer[show_offset+file_select-folder_total].filename;	
@@ -1861,7 +1861,7 @@ re_showfile:
 					//res = f_getcwd(currentpath, sizeof currentpath / sizeof *currentpath);		
 		      if (show_offset + file_select < folder_total) {	   				
 	   				
-						 if (strcmp(currentpath,"/") !=0) {	
+						if (strcmp(currentpath,"/") !=0) {	
 	   					sprintf(currentpath,"%s%s",currentpath,"/");
 						}
 		      	
@@ -2049,6 +2049,8 @@ re_showfile:
 					}
 				} else {
 					//page_num==SD_list
+					DEBUG_printf("get_crc32 %x ", page_num);
+	
 					if (MENU_line == 5) {
 						//open cht file
 						Open_cht_file(pfilename,havecht);	
