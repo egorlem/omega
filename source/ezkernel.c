@@ -2,6 +2,7 @@
 #include <gba_interrupt.h>
 #include <gba_systemcalls.h>
 #include <gba_input.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <gba_base.h>
@@ -35,8 +36,8 @@
 #include "images/icon_GB.h"
 #include "images/NOTFOUND.h"
 
-#include "goomba.h"
-#include "pocketnes.h"
+// #include "goomba.h"
+// #include "pocketnes.h"
 
 
 
@@ -1238,39 +1239,42 @@ u32 IWRAM_CODE LoadEMU2PSRAM(TCHAR *filename,u32 is_EMU)
 	SetPSRampage(page);
 	
 	u32 rom_start_address=0;
-	switch(is_EMU)
-	{
-		case 1://gbc
-		case 2://gb	
-			dmaCopy((void*)goomba_gba,pReadCache, goomba_gba_size);
-			dmaCopy((void*)pReadCache,PSRAMBase_S98, goomba_gba_size);
-			rom_start_address = goomba_gba_size;
-			break;
-		case 3://nes
-			dmaCopy((void*)pocketnes_gba,pReadCache, pocketnes_gba_size);
-			dmaCopy((void*)pReadCache,PSRAMBase_S98, pocketnes_gba_size);
-			rom_start_address = pocketnes_gba_size+0x30;
-			break;
-		default:
-			break;	
-	}
+
+	/* DELETE */
+
+	// switch(is_EMU) {
+	// 	case 1://gbc
+	// 	// case 2://gb	
+	// 	// 	dmaCopy((void*)goomba_gba,pReadCache, goomba_gba_size);
+	// 	// 	dmaCopy((void*)pReadCache,PSRAMBase_S98, goomba_gba_size);
+	// 	// 	rom_start_address = goomba_gba_size;
+	// 	// 	break;
+	// 	// case 3://nes
+	// 	// 	dmaCopy((void*)pocketnes_gba,pReadCache, pocketnes_gba_size);
+	// 	// 	dmaCopy((void*)pReadCache,PSRAMBase_S98, pocketnes_gba_size);
+	// 	// 	rom_start_address = pocketnes_gba_size+0x30;
+	// 	// 	break;
+	// 	default:
+	// 		break;	
+	// }
 	
 	res = f_open(&gfile, filename, FA_READ);
 	if(res == FR_OK)
 	{
 		filesize = f_size(&gfile);	
 		
-		if(is_EMU==3){//nes pocketnes_2013_07_01
-			*(vu32*)pReadCache = 0x45564153;
-			*((vu32*)pReadCache+1) = 0x0;
-			dmaCopy((void*)pReadCache,PSRAMBase_S98 + rom_start_address -0x30, 0x8);				
-			*(vu32*)pReadCache = filesize;
-			dmaCopy((void*)pReadCache,PSRAMBase_S98 + rom_start_address -0x10, 0x4);
+		/* DELETE */
+		// if(is_EMU==3){//nes pocketnes_2013_07_01
+		// 	*(vu32*)pReadCache = 0x45564153;
+		// 	*((vu32*)pReadCache+1) = 0x0;
+		// 	dmaCopy((void*)pReadCache,PSRAMBase_S98 + rom_start_address -0x30, 0x8);				
+		// 	*(vu32*)pReadCache = filesize;
+		// 	dmaCopy((void*)pReadCache,PSRAMBase_S98 + rom_start_address -0x10, 0x4);
 			
-			*(vu32*)pReadCache = 0x709346c0;//usr rtc
-			dmaCopy((void*)pReadCache,PSRAMBase_S98 + 0x1EA0, 0x4);	
+		// 	*(vu32*)pReadCache = 0x709346c0;//usr rtc
+		// 	dmaCopy((void*)pReadCache,PSRAMBase_S98 + 0x1EA0, 0x4);	
 			
-		}
+		// }
 		/*else{
 			*(vu32*)pReadCache = 0x46c046c0;
 			dmaCopy((void*)pReadCache,PSRAMBase_S98 + 0x3AA0, 0x4);	//exit no sram write
@@ -2128,7 +2132,7 @@ re_showfile:
 		u32 strlen8 = strlen(savfilename) ;
 
 		if (is_EMU) {
-			if (is_EMU ==2) {//gb
+			if (is_EMU == 2) {//gb
 				(savfilename)[strlen8-2] = 'e';
 				(savfilename)[strlen8-1] = 's';
 				(savfilename)[strlen8-0] = 'v';		
